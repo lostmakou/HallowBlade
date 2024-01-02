@@ -6,14 +6,27 @@
         xmlns:local="clr-namespace:ZeldaWPF"
         mc:Ignorable="d"
         Title="ZelfdaWF" Height="640" Width="820">
-    <Canvas Name="myCanvas" Background="LightBlue" Focusable="True" >
-        <Rectangle Name="black" Fill="Black" Height="100" Width="820"></Rectangle>
-        <!--<Rectangle Name="player" Height="50" Width="50" Canvas.Left="375" Canvas.Top="167" RenderTransformOrigin="0.545,0.545">
+    <Grid>
+        <Canvas Name="MainMenu" Background="Black" Focusable="True">
+            <Image Source="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\menu.png" Stretch="UniformToFill" Height="624" Width="820" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
+            <Button Canvas.Left="555" Canvas.Top="468" Click="Button_Click" Height="110" Width="255" HorizontalAlignment="Left" VerticalAlignment="Center" >
+
+                <Button.Background>
+                    <ImageBrush ImageSource="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\play_button.png"></ImageBrush>
+                </Button.Background>
+            </Button>
+        </Canvas>
+        <Canvas Name="myCanvas" Background="LightBlue" Focusable="False" Visibility="Collapsed">
+            <MediaElement x:Name="outer_music" Source="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\outer_music.mp3" IsMuted="True"></MediaElement>
+            <Rectangle Name="black" Fill="Black" Height="100" Width="820"></Rectangle>
+            <!--<Rectangle Name="player" Height="50" Width="50" Canvas.Left="375" Canvas.Top="167" RenderTransformOrigin="0.545,0.545">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="\\Mac\Home\Desktop\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\Timer and Keyboard MOO ICT\Data\Texture\mchar_ver1_noweapon_front1.png"></ImageBrush>
             </Rectangle.Fill>
         </Rectangle>-->
-        <!--<Rectangle Name="box" Height="50" Width="50" Fill="Purple" Canvas.Left="381" Canvas.Top="279" />-->
+            <!--<Rectangle Name="box" Height="50" Width="50" Fill="Purple" Canvas.Left="381" Canvas.Top="279" />-->
 
-    </Canvas>
+        </Canvas>
+    </Grid>
+
 </Window>

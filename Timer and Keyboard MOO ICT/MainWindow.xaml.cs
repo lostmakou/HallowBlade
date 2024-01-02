@@ -106,6 +106,13 @@ namespace ZeldaWPF
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenu.Visibility = Visibility.Collapsed;
+            myCanvas.Visibility = Visibility.Visible;
+            outer_music.IsMuted = false;
+        }
+
         /*private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.A)

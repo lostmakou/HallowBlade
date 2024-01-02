@@ -150,5 +150,14 @@
   <ItemGroup>
     <Resource Include="Data\Texture\torch.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Texture\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Texture\play_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\outer_music.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
