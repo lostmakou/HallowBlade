@@ -1,0 +1,16 @@
+{
+  "Notes": [
+    {
+      "NoteString": "Text",
+      "Position": {
+        "X": 0,
+        "Y": 0
+      },
+      "ScreenPosition": {
+        "X": 5,
+        "Y": 5
+      },
+      "Id":  1
+    }
+  ]
+}
