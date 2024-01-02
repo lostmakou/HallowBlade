@@ -17,8 +17,10 @@ namespace ZeldaWPF
     class Sword
     {
         private Rectangle rect;
-        private int swordSpeed = 20;
+        private Canvas canvas;
+        private int swordSpeed = 10;
         private Direction dir;
+        private int timeOut = 30;
 
         public Sword(int x, int y, Direction direction, Canvas canvas) 
         {
@@ -26,13 +28,14 @@ namespace ZeldaWPF
             rect.Height = 50;
             rect.Width = 50;
             rect.Fill = Brushes.White;
+            this.canvas = canvas;
             canvas.Children.Add(rect);
             Canvas.SetTop(rect, y);
             Canvas.SetLeft(rect, x);
             this.dir = direction;
         }
 
-        public void Update()
+        public bool Update()
         {
             if (dir == Direction.Up) 
             {
@@ -50,6 +53,13 @@ namespace ZeldaWPF
             { 
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) + swordSpeed); 
             }
+            timeOut -= 5;
+            if (timeOut < 0)
+            {
+                canvas.Children.Remove(rect);
+                return true;
+            }
+            return false;   
         }
     }
 }

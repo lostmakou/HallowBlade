@@ -25,6 +25,7 @@ namespace ZeldaWPF
         Player Player;
         MapRender mr;
         HashSet<Key> keys = new HashSet<Key>();
+        Sword sword;
 
         DispatcherTimer gameTimer = new DispatcherTimer();
 
@@ -53,6 +54,9 @@ namespace ZeldaWPF
 
             //mr.Render(Player.Area);
             Player.PrintInfo();
+            if (sword != null)
+                if (sword.Update())
+                    sword = null;
 
 
             //Canvas.SetLeft(box, Canvas.GetLeft(box) - speed);
@@ -76,7 +80,7 @@ namespace ZeldaWPF
 
         private void MovePlayer()
         {
-            Sword sword;
+            
             foreach (Key key in keys)
             {
                 if (key == Key.A)
@@ -87,10 +91,26 @@ namespace ZeldaWPF
                     Player.Move(false, false, true, false);
                 if (key == Key.S)
                     Player.Move(false, false, false, true);
-                if (key == Key.Up) 
-                    sword = new Sword(400, 300, Direction.Left, myCanvas);
+                if (sword == null)
+                {
+                    if (key == Key.Up)
+                        sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Up, myCanvas);
+                    if (key == Key.Down)
+                        sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Down, myCanvas);
+                    if (key == Key.Left)
+                        sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Left, myCanvas);
+                    if (key == Key.Right)
+                        sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Right, myCanvas);
+                }
 
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainMenu.Visibility = Visibility.Collapsed;
+            myCanvas.Visibility = Visibility.Visible;
+            outer_music.IsMuted = false;
         }
 
         /*private void KeyIsDown(object sender, KeyEventArgs e)
