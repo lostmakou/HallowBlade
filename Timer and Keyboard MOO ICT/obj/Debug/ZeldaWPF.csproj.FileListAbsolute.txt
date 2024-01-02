@@ -66,3 +66,37 @@ Z:\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\ZeldaWPF.csproj.Core
 Z:\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\ZeldaWPF.csproj.CopyComplete
 Z:\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer and Keyboard MOO ICT.exe
 Z:\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer and Keyboard MOO ICT.pdb
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\Timer and Keyboard MOO ICT.exe.config
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\Timer and Keyboard MOO ICT.exe
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\Timer and Keyboard MOO ICT.pdb
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Buffers.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Memory.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Numerics.Vectors.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Text.Encodings.Web.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Text.Json.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Threading.Tasks.Extensions.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.ValueTuple.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Buffers.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Memory.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Numerics.Vectors.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Text.Encodings.Web.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Text.Json.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.Threading.Tasks.Extensions.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\System.ValueTuple.xml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\ZeldaWPF.csproj.AssemblyReference.cache
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\MainWindow.g.cs
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\App.g.cs
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer and Keyboard MOO ICT_MarkupCompile.cache
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer and Keyboard MOO ICT_MarkupCompile.lref
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\MainWindow.baml
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer and Keyboard MOO ICT.g.resources
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer_and_Keyboard_MOO_ICT.Properties.Resources.resources
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\ZeldaWPF.csproj.GenerateResource.cache
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\ZeldaWPF.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\ZeldaWPF.csproj.CopyComplete
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer and Keyboard MOO ICT.exe
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer and Keyboard MOO ICT.pdb

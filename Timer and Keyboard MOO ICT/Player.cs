@@ -15,7 +15,7 @@ namespace ZeldaWPF {
 
     class Player
     {
-        private Rectangle rect;
+        public Rectangle rect;
         private int PlayerSpeed;
         Canvas myCanvas;
         MapRender mr;
