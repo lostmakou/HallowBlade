@@ -116,9 +116,9 @@ namespace ZeldaWPF
                 if (enemy.Type == "Ghost")
                     en = new Ghost(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas);
                 else if (enemy.Type == "Zombie")
-                    en = new Zombie( enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas);
+                    en = new Zombie( enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks);
                 else if (enemy.Type == "Vampire")
-                    break;
+                    en = new Vampire(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks);
                 Canvas.SetTop(en.EnemyRectangle, 100 + enemy.Position.Y * 50);
                 Canvas.SetLeft(en.EnemyRectangle, enemy.Position.X * 50);
                 enemies.Add(en);
