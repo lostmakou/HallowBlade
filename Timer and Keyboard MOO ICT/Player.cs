@@ -7,8 +7,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
 
 namespace ZeldaWPF {
@@ -26,6 +28,7 @@ namespace ZeldaWPF {
         public bool InDungeon;
         public char Dungeon;
         public int Money;
+        public int Invincibility;
 
         public Player(Canvas canvas, MapRender mr)
         {
@@ -49,9 +52,17 @@ namespace ZeldaWPF {
             Health = 12;
             Area = (0, 0);
             InDungeon = false;
+            Invincibility = 0;
             this.mr = mr;
             mr.Render(Area);
             BringToFront();
+        }
+
+        public void Update()
+        {
+            if (Invincibility > 0)
+                Invincibility -= 1;
+            CollideWithEnemies();
         }
 
         public void Move(bool goLeft, bool goRight, bool goUp, bool goDown)
@@ -59,22 +70,22 @@ namespace ZeldaWPF {
             if (goLeft == true /*&& Canvas.GetLeft(rect) > 5*/)
             {
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) - PlayerSpeed);
-                Collide(-1, 0);
+                CollideWithBlocks(-1, 0);
             }
             else if (goRight == true /*&& Canvas.GetLeft(rect) + (rect.Width + 20) < Application.Current.MainWindow.Width*/)
             {
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) + PlayerSpeed);
-                Collide(1, 0);
+                CollideWithBlocks(1, 0);
             }
             if (goUp == true /*&& Canvas.GetTop(rect) > 5*/)
             {
                 Canvas.SetTop(rect, Canvas.GetTop(rect) - PlayerSpeed);
-                Collide(0, -1);
+                CollideWithBlocks(0, -1);
             }
             else if (goDown == true /*&& Canvas.GetTop(rect) + (rect.Height * 2) < Application.Current.MainWindow.Height*/)
             {
                 Canvas.SetTop(rect, Canvas.GetTop(rect) + PlayerSpeed);
-                Collide(0, 1);
+                CollideWithBlocks(0, 1);
             }
 
             if (Canvas.GetLeft(rect) + rect.ActualWidth > Application.Current.MainWindow.ActualWidth) 
@@ -146,7 +157,27 @@ namespace ZeldaWPF {
 
         }
 
-        public void Collide(int dx, int dy)
+        public void CollideWithEnemies()
+        {
+            Rect PlayerHitBox = new Rect(Canvas.GetLeft(rect) + 5, Canvas.GetTop(rect) + 10, rect.ActualWidth - 10, rect.ActualHeight - 10);
+
+            foreach (IEnemy enemy in mr.enemies)
+            {
+                Rect EnemyHitBox = new Rect(Canvas.GetLeft(enemy.EnemyRectangle), Canvas.GetTop(enemy.EnemyRectangle), enemy.EnemyRectangle.ActualWidth, enemy.EnemyRectangle.ActualHeight);
+
+                if (PlayerHitBox.IntersectsWith(EnemyHitBox))
+                {
+                    if (Invincibility == 0)
+                    {
+                        Health -= 1;
+                        Invincibility = 100;
+                    }
+
+                }
+            }
+        }
+
+        public void CollideWithBlocks(int dx, int dy)
         {
             Rect PlayerHitBox = new Rect(Canvas.GetLeft(rect)+5, Canvas.GetTop(rect)+10, rect.ActualWidth - 10, rect.ActualHeight - 10);
             foreach (Block block in mr.blocks)

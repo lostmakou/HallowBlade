@@ -16,7 +16,7 @@ namespace ZeldaWPF
 
     class Sword
     {
-        private Rectangle rect;
+        public Rectangle rect;
         private Canvas canvas;
         private int swordSpeed = 10;
         private Direction dir;

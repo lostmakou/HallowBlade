@@ -15,6 +15,7 @@ namespace ZeldaWPF
     {
         public List<string> Layout { get; set; }
         public Position Position { get; set; }
+        public List<Enemy> Enemies { get; set; }
     }
 
     public class Position
@@ -23,6 +24,11 @@ namespace ZeldaWPF
         public int Y { get; set; }
     }
 
+    public class Enemy
+    {
+        public string Type { get; set; }
+        public Position Position { get; set; }
+    }
 
     public class ScreenDataDungeon 
     {
