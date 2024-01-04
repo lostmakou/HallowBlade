@@ -16,11 +16,12 @@ namespace ZeldaWPF
 
     class Sword
     {
-        private Rectangle rect;
+        public Rectangle rect;
         private Canvas canvas;
-        private int swordSpeed = 10;
+        private int swordSpeed = 5;
         private Direction dir;
-        private int timeOut = 30;
+        private int timeOut = 12;
+        public bool isExist = true;
 
         public Sword(int x, int y, Direction direction, Canvas canvas) 
         {
@@ -53,7 +54,7 @@ namespace ZeldaWPF
             { 
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) + swordSpeed); 
             }
-            timeOut -= 5;
+            timeOut -= 1;
             if (timeOut < 0)
             {
                 canvas.Children.Remove(rect);

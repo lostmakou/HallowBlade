@@ -7,8 +7,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
 
 namespace ZeldaWPF {
@@ -20,22 +22,25 @@ namespace ZeldaWPF {
         Canvas myCanvas;
         MapRender mr;
         private List<TextBlock> InfoText = new List<TextBlock>();
+        private Direction Direction { get; set; } = Direction.Down;
         public int Health;
         public (int, int) Area;
         public (int, int) DungeonArea;
         public bool InDungeon;
         public char Dungeon;
         public int Money;
+        public int Invincibility;
+        ImageBrush imageBrush;
 
         public Player(Canvas canvas, MapRender mr)
         {
             rect = new Rectangle();
             rect.Height = 50;
             rect.Width = 50;
-            rect.Fill = Brushes.Red;
+            //rect.Fill = Brushes.Red;
             myCanvas = canvas;
             myCanvas.Children.Add(rect);
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
             {
                 TileMode = TileMode.Tile,
                 Viewport = new Rect(0, 0, 50, 50),
@@ -45,36 +50,70 @@ namespace ZeldaWPF {
             myCanvas.Background = imageBrush;
             Canvas.SetLeft(rect, 400);
             Canvas.SetTop(rect, 300);
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
+            rect.Fill = imageBrush;
             PlayerSpeed = 5;
-            Health = 12;
+            Health = 3;
             Area = (0, 0);
             InDungeon = false;
+            Invincibility = 0;
             this.mr = mr;
             mr.Render(Area);
             BringToFront();
+        }
+
+        public void Update()
+        {
+            if (Invincibility > 0)
+                Invincibility -= 1;
+            CollideWithEnemies();
         }
 
         public void Move(bool goLeft, bool goRight, bool goUp, bool goDown)
         {
             if (goLeft == true /*&& Canvas.GetLeft(rect) > 5*/)
             {
+                if (Direction != Direction.Left)
+                {
+                    Direction = Direction.Left;
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_side_left1.png", UriKind.RelativeOrAbsolute)));
+                    rect.Fill= imageBrush;
+                }
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) - PlayerSpeed);
-                Collide(-1, 0);
+                CollideWithBlocks(-1, 0);
             }
             else if (goRight == true /*&& Canvas.GetLeft(rect) + (rect.Width + 20) < Application.Current.MainWindow.Width*/)
             {
+                if (Direction != Direction.Right)
+                {
+                    Direction = Direction.Right;
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_side_right1.png", UriKind.RelativeOrAbsolute)));
+                    rect.Fill = imageBrush;
+                }
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) + PlayerSpeed);
-                Collide(1, 0);
+                CollideWithBlocks(1, 0);
             }
             if (goUp == true /*&& Canvas.GetTop(rect) > 5*/)
             {
+                if (Direction != Direction.Down)
+                { 
+                    Direction = Direction.Down;
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_back1.png", UriKind.RelativeOrAbsolute)));
+                    rect.Fill = imageBrush;
+                }
                 Canvas.SetTop(rect, Canvas.GetTop(rect) - PlayerSpeed);
-                Collide(0, -1);
-            }
+                CollideWithBlocks(0, -1);
+            }d
             else if (goDown == true /*&& Canvas.GetTop(rect) + (rect.Height * 2) < Application.Current.MainWindow.Height*/)
             {
+                if (Direction != Direction.Up)
+                {
+                    Direction = Direction.Up;
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
+                    rect.Fill = imageBrush;
+                }
                 Canvas.SetTop(rect, Canvas.GetTop(rect) + PlayerSpeed);
-                Collide(0, 1);
+                CollideWithBlocks(0, 1);
             }
 
             if (Canvas.GetLeft(rect) + rect.ActualWidth > Application.Current.MainWindow.ActualWidth) 
@@ -146,7 +185,27 @@ namespace ZeldaWPF {
 
         }
 
-        public void Collide(int dx, int dy)
+        public void CollideWithEnemies()
+        {
+            Rect PlayerHitBox = new Rect(Canvas.GetLeft(rect) + 5, Canvas.GetTop(rect) + 10, rect.ActualWidth - 10, rect.ActualHeight - 10);
+
+            foreach (IEnemy enemy in mr.enemies)
+            {
+                Rect EnemyHitBox = new Rect(Canvas.GetLeft(enemy.EnemyRectangle), Canvas.GetTop(enemy.EnemyRectangle), enemy.EnemyRectangle.ActualWidth, enemy.EnemyRectangle.ActualHeight);
+
+                if (PlayerHitBox.IntersectsWith(EnemyHitBox))
+                {
+                    if (Invincibility == 0)
+                    {
+                        Health -= 1;
+                        Invincibility = 100;
+                    }
+
+                }
+            }
+        }
+
+        public void CollideWithBlocks(int dx, int dy)
         {
             Rect PlayerHitBox = new Rect(Canvas.GetLeft(rect)+5, Canvas.GetTop(rect)+10, rect.ActualWidth - 10, rect.ActualHeight - 10);
             foreach (Block block in mr.blocks)

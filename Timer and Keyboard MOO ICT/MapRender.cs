@@ -17,13 +17,16 @@ namespace ZeldaWPF
     internal class MapRender
     {
         Canvas myCanvas;
-        public List<Block> blocks; 
+        public List<Block> blocks;
+        public List<IEnemy> enemies;
+        public List<IEnemy> tempEnemies;
         public string[] notes = new string[20];
         public MapRender(Canvas myCanvas) 
         {
             this.myCanvas = myCanvas; 
             blocks = new List<Block>();
-            
+            enemies = new List<IEnemy>();
+            tempEnemies = new List<IEnemy>();
         }
         public void Render((int, int) area) 
         {
@@ -32,21 +35,27 @@ namespace ZeldaWPF
                 myCanvas.Children.Remove(bl.BlockRect);
             }
             blocks.Clear();
+            enemies.Clear();
 
-            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Map\\outer.json");
+            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\test.json");
             
             ScreensData screens = JsonSerializer.Deserialize<ScreensData>(jsonString);
-            List<string> lvl = new List<string>();
+            //List<string> lvl = new List<string>();
             foreach (Screen s in screens.Screens)
             {
                 if (s.Position.X == area.Item1 &&  s.Position.Y == area.Item2)
                 {
-                    lvl = s.Layout;
+                    //lvl = s.Layout;
+
+                    DrawBlocks(s.Layout);
+                    DrawEnemies(s.Enemies);
+                    break;
                 }
             }
 
-            DrawBlocks(lvl);
-            DrawNotes(area);
+
+            
+            //DrawNotes(area);
             
         }
 
@@ -57,7 +66,7 @@ namespace ZeldaWPF
                 myCanvas.Children.Remove(bl.BlockRect);
             }
             blocks.Clear();
-            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Map\\dungeon.json");
+            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\dungeon.json");
 
             DungeonData dungeons = JsonSerializer.Deserialize<DungeonData>(jsonString);
             List<string> lvl = new List<string>();
@@ -100,9 +109,28 @@ namespace ZeldaWPF
             }
         }
 
+        private void DrawEnemies(List<Enemy> enemies1)
+        {
+            foreach (Enemy enemy in enemies1)
+            {
+                IEnemy en = null;
+                if (enemy.Type == "Ghost")
+                    en = new Ghost(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas);
+                else if (enemy.Type == "Zombie")
+                    en = new Zombie(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks);
+                else if (enemy.Type == "Vampire")
+                    en = new Vampire(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks);
+                else if (enemy.Type == "Boss")
+                    en = new Boss(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks, tempEnemies);
+                Canvas.SetTop(en.EnemyRectangle, 100 + enemy.Position.Y * 50);
+                Canvas.SetLeft(en.EnemyRectangle, enemy.Position.X * 50);
+                enemies.Add(en);
+            }
+        }
+
         private void DrawNotes((int, int) area)
         {
-            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Map\\note.json");
+            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\note.json");
             NotesData notesData = JsonSerializer.Deserialize<NotesData>(jsonString);
             foreach (Note note in notesData.Notes)
             {

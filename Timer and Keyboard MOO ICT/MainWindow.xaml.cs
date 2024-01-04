@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -40,8 +41,8 @@ namespace ZeldaWPF
             myCanvas.Focus();
 
             gameTimer.Tick += GameTimerEvent;
-            gameTimer.Interval = TimeSpan.FromMilliseconds(16);
-            gameTimer.Start();
+            gameTimer.Interval = TimeSpan.FromMilliseconds(30);
+            
             KeyDown += MainWindow_KeyDown;
             KeyUp += MainWindow_KeyUp;
 
@@ -53,10 +54,57 @@ namespace ZeldaWPF
         {
 
             //mr.Render(Player.Area);
+            Player.Update();
             Player.PrintInfo();
             if (sword != null)
                 if (sword.Update())
                     sword = null;
+                else if (sword.isExist == true)
+                {
+                    Rect SwordHitBox = new Rect(Canvas.GetLeft(sword.rect), Canvas.GetTop(sword.rect), sword.rect.ActualWidth, sword.rect.ActualHeight);
+                    foreach (var enemy in mr.enemies)
+                    {
+                        Rect EnemyHitBox = new Rect(Canvas.GetLeft(enemy.EnemyRectangle), Canvas.GetTop(enemy.EnemyRectangle), enemy.EnemyRectangle.ActualWidth, enemy.EnemyRectangle.ActualHeight);
+                        if (SwordHitBox.IntersectsWith(EnemyHitBox))
+                        {
+                            enemy.Health -= 1;
+                            //Console.WriteLine(enemy.Health.ToString());
+                            if (enemy.Health <= 0)
+                            {
+                                myCanvas.Children.Remove(enemy.EnemyRectangle);
+                                mr.enemies.Remove(enemy);
+                                break;
+                            }
+                            myCanvas.Children.Remove(sword.rect);
+                            sword.isExist = false; 
+                            break;
+                        }
+                    }
+                }
+            foreach (var en in mr.enemies)
+            {
+                Position pp = new Position();
+                pp.X = (int)Canvas.GetLeft(Player.rect);
+                pp.Y = (int)Canvas.GetTop(Player.rect);
+
+                en.Update(pp);
+                if (mr.tempEnemies.Count > 0)
+                {
+                    mr.enemies.AddRange(mr.tempEnemies);
+                    mr.tempEnemies.Clear();
+                    break;
+                }
+            }
+
+            if (Player.Health <= 0)
+            {
+                gameTimer.Stop();
+                myCanvas.Children.Clear();
+                Player = new Player(myCanvas, mr);
+                myCanvas.Visibility = Visibility.Collapsed;
+                MainMenu.Visibility = Visibility.Visible;
+                
+            }
 
 
             //Canvas.SetLeft(box, Canvas.GetLeft(box) - speed);
@@ -110,7 +158,8 @@ namespace ZeldaWPF
         {
             MainMenu.Visibility = Visibility.Collapsed;
             myCanvas.Visibility = Visibility.Visible;
-            outer_music.IsMuted = false;
+            //outer_music.IsMuted = false;
+            gameTimer.Start();
         }
 
         /*private void KeyIsDown(object sender, KeyEventArgs e)

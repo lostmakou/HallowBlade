@@ -9,7 +9,7 @@ using System.Windows.Shapes;
 
 namespace ZeldaWPF
 {
-    class Block
+    public class Block
     {
         public Rectangle BlockRect { get; set; }
         public char Type { get; set; }
