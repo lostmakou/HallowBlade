@@ -22,6 +22,7 @@ namespace ZeldaWPF
         private Direction dir;
         private int timeOut = 12;
         public bool isExist = true;
+        
 
         public Sword(int x, int y, Direction direction, Canvas canvas) 
         {

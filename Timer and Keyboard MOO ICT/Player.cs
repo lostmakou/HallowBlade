@@ -23,13 +23,14 @@ namespace ZeldaWPF {
         MapRender mr;
         private List<TextBlock> InfoText = new List<TextBlock>();
         private Direction Direction { get; set; } = Direction.Down;
+        public bool isMatchedSword = false;
         public int Health;
         public (int, int) Area;
         public (int, int) DungeonArea;
         public bool InDungeon;
         public char Dungeon;
         public int Money;
-        public int Invincibility;
+        public int Invincibility { get; set; }
         ImageBrush imageBrush;
 
         public Player(Canvas canvas, MapRender mr)
@@ -103,7 +104,7 @@ namespace ZeldaWPF {
                 }
                 Canvas.SetTop(rect, Canvas.GetTop(rect) - PlayerSpeed);
                 CollideWithBlocks(0, -1);
-            }d
+            }
             else if (goDown == true /*&& Canvas.GetTop(rect) + (rect.Height * 2) < Application.Current.MainWindow.Height*/)
             {
                 if (Direction != Direction.Up)
@@ -198,7 +199,7 @@ namespace ZeldaWPF {
                     if (Invincibility == 0)
                     {
                         Health -= 1;
-                        Invincibility = 100;
+                        Invincibility = 30;
                     }
 
                 }

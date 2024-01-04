@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,7 @@ namespace ZeldaWPF
 
         DispatcherTimer gameTimer = new DispatcherTimer();
 
+        private CanvasHandlerClass RPS;
 
         public MainWindow()
         {
@@ -45,6 +47,9 @@ namespace ZeldaWPF
             
             KeyDown += MainWindow_KeyDown;
             KeyUp += MainWindow_KeyUp;
+
+
+            RPS = new CanvasHandlerClass(RockPaperScissors);
 
         }
 
@@ -139,7 +144,7 @@ namespace ZeldaWPF
                     Player.Move(false, false, true, false);
                 if (key == Key.S)
                     Player.Move(false, false, false, true);
-                if (sword == null)
+                if (sword == null && Player.isMatchedSword)
                 {
                     if (key == Key.Up)
                         sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Up, myCanvas);
@@ -150,7 +155,13 @@ namespace ZeldaWPF
                     if (key == Key.Right)
                         sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Right, myCanvas);
                 }
-
+                if (key == Key.Y)
+                {
+                    gameTimer.Stop();
+                    myCanvas.Visibility = Visibility.Collapsed;
+                    RockPaperScissors.Visibility = Visibility.Visible;
+                    RPS.gameTimer.Start();
+                }
             }
         }
 

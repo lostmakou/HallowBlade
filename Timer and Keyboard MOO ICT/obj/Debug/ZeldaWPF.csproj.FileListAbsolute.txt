@@ -101,3 +101,6 @@ Z:\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\Timer and Keyboard M
 \\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\HallowBlade.Properties.Resources.resources
 \\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\HallowBlade.exe
 \\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\obj\Debug\HallowBlade.pdb
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\WpfAnimatedGif.dll
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\WpfAnimatedGif.pdb
+\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\bin\Debug\WpfAnimatedGif.xml

@@ -37,7 +37,7 @@ namespace ZeldaWPF
             blocks.Clear();
             enemies.Clear();
 
-            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\test.json");
+            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\outer.json");
             
             ScreensData screens = JsonSerializer.Deserialize<ScreensData>(jsonString);
             //List<string> lvl = new List<string>();

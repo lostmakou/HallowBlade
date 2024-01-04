@@ -9,11 +9,11 @@
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Canvas Name="MainMenu" Background="Black" Focusable="True">
-            <Image Source="C:\Users\79044\Desktop\игра\HallowBlade-main\Timer and Keyboard MOO ICT\Data\Texture\menu.png" Stretch="UniformToFill" Height="624" Width="820" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
+            <Image Source="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\menu.png" Stretch="UniformToFill" Height="624" Width="820" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
             <Button Canvas.Left="555" Canvas.Top="468" Click="Button_Click" Height="110" Width="255" HorizontalAlignment="Left" VerticalAlignment="Center" >
 
                 <Button.Background>
-                    <ImageBrush ImageSource="C:\Users\79044\Desktop\игра\HallowBlade-main\Timer and Keyboard MOO ICT\Data\Texture\play_button.png"></ImageBrush>
+                    <ImageBrush ImageSource="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\play_button.png"></ImageBrush>
                 </Button.Background>
             </Button>
         </Canvas>
@@ -30,21 +30,21 @@
         </Canvas>
 
         <!--Камень, ножницы бумага-->
-        <Canvas Margin="0,0,0,-6" Grid.ColumnSpan="2" Visibility="Hidden" >
+        <Canvas Margin="0,0,0,-6" Grid.ColumnSpan="2" Visibility="Hidden" x:Name="RockPaperScissors">
             <Canvas.Background>
-                <ImageBrush ImageSource="/game_2_background.png"/>
+                <ImageBrush ImageSource="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\game_2_background_ver2.png"/>
             </Canvas.Background>
-            <Button x:Name="btnRock" Height="99" Width="184" Canvas.Left="43" Canvas.Top="460" Click="btnRock_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Content="">
+            <Button x:Name="btnRock" Height="99" Width="184" Canvas.Left="43" Canvas.Top="460" HorizontalAlignment="Center" VerticalAlignment="Center" Content="">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Rock_button.png"/>
+                    <ImageBrush ImageSource="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\Rock_button.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btnScissors" Height="99" Width="184" HorizontalAlignment="Center" Canvas.Top="460" VerticalAlignment="Center" Canvas.Left="318" Click="btnScissors_Click" Content="">
+            <Button x:Name="btnScissors" Height="99" Width="184" HorizontalAlignment="Center" Canvas.Top="460" VerticalAlignment="Center" Canvas.Left="318"  Content="">
                 <Button.Background>
-                    <ImageBrush ImageSource="/Scissors_button.png"/>
+                    <ImageBrush ImageSource="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\Scissors_button.png"/>
                 </Button.Background>
             </Button>
-            <Button Height="99" Width="184" Canvas.Top="460" Canvas.Left="578" Click="btnPaper_Click" HorizontalAlignment="Center" VerticalAlignment="Top" Content="" RenderTransformOrigin="0.568,0.112">
+            <Button x:Name="btnPaper" Height="99" Width="184" Canvas.Top="460" Canvas.Left="578"  HorizontalAlignment="Center" VerticalAlignment="Top" Content="" RenderTransformOrigin="0.568,0.112">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -54,7 +54,7 @@
                     </TransformGroup>
                 </Button.RenderTransform>
                 <Button.Background>
-                    <ImageBrush ImageSource="/Paper_button.png"/>
+                    <ImageBrush ImageSource="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\Paper_button.png"/>
                 </Button.Background>
             </Button>
             <Rectangle x:Name="picPlayer" Canvas.Top="205" Height="220" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="36">
@@ -67,12 +67,12 @@
                     </TransformGroup>
                 </Rectangle.RenderTransform>
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Question_button.png"/>
+                    <ImageBrush ImageSource="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\Question_button.png"/>
                 </Rectangle.Fill>
             </Rectangle>
             <Rectangle x:Name="picCPU" Canvas.Left="558" Canvas.Top="205" Height="220" Width="220" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Rectangle.Fill>
-                    <ImageBrush ImageSource="/Question_button.png"/>
+                    <ImageBrush ImageSource="\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Texture\Question_button.png"/>
                 </Rectangle.Fill>
             </Rectangle>
             <TextBlock FontSize="35" Canvas.Left="113" Canvas.Top="127" HorizontalAlignment="Center" VerticalAlignment="Top">Вы</TextBlock>

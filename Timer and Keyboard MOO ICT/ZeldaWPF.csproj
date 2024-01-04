@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Enemy.cs" />
+    <Compile Include="RPS.cs" />
     <Compile Include="Sword.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +164,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Music\outer_music.mp3" />
+    <Resource Include="Data\Texture\Fist_boss.png" />
+    <Resource Include="Data\Texture\Fist_gg.png" />
+    <Resource Include="Data\Texture\game_2_background.png" />
+    <Resource Include="Data\Texture\game_2_background_ver2.png" />
+    <Resource Include="Data\Texture\Paper_boss.png" />
+    <Resource Include="Data\Texture\Paper_button.png" />
+    <Resource Include="Data\Texture\Paper_gg.png" />
+    <Resource Include="Data\Texture\Question_button.png" />
+    <Resource Include="Data\Texture\Rock_button.png" />
+    <Resource Include="Data\Texture\Scissors_boss.png" />
+    <Resource Include="Data\Texture\Scissors_button.png" />
+    <Resource Include="Data\Texture\Scissors_gg.png" />
     <Resource Include="Data\Texture\mchar_ver1_noweapon_back1.png" />
     <Resource Include="Data\Texture\mchar_ver1_noweapon_front1.png" />
     <Resource Include="Data\Texture\mchar_ver1_noweapon_side_right1.png" />
