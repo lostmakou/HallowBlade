@@ -22,6 +22,7 @@ namespace ZeldaWPF {
         Canvas myCanvas;
         MapRender mr;
         private List<TextBlock> InfoText = new List<TextBlock>();
+        private Direction Direction { get; set; } = Direction.Down;
         public int Health;
         public (int, int) Area;
         public (int, int) DungeonArea;
@@ -29,16 +30,17 @@ namespace ZeldaWPF {
         public char Dungeon;
         public int Money;
         public int Invincibility;
+        ImageBrush imageBrush;
 
         public Player(Canvas canvas, MapRender mr)
         {
             rect = new Rectangle();
             rect.Height = 50;
             rect.Width = 50;
-            rect.Fill = Brushes.Red;
+            //rect.Fill = Brushes.Red;
             myCanvas = canvas;
             myCanvas.Children.Add(rect);
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
             {
                 TileMode = TileMode.Tile,
                 Viewport = new Rect(0, 0, 50, 50),
@@ -48,8 +50,10 @@ namespace ZeldaWPF {
             myCanvas.Background = imageBrush;
             Canvas.SetLeft(rect, 400);
             Canvas.SetTop(rect, 300);
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
+            rect.Fill = imageBrush;
             PlayerSpeed = 5;
-            Health = 12;
+            Health = 3;
             Area = (0, 0);
             InDungeon = false;
             Invincibility = 0;
@@ -69,21 +73,45 @@ namespace ZeldaWPF {
         {
             if (goLeft == true /*&& Canvas.GetLeft(rect) > 5*/)
             {
+                if (Direction != Direction.Left)
+                {
+                    Direction = Direction.Left;
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_side_left1.png", UriKind.RelativeOrAbsolute)));
+                    rect.Fill= imageBrush;
+                }
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) - PlayerSpeed);
                 CollideWithBlocks(-1, 0);
             }
             else if (goRight == true /*&& Canvas.GetLeft(rect) + (rect.Width + 20) < Application.Current.MainWindow.Width*/)
             {
+                if (Direction != Direction.Right)
+                {
+                    Direction = Direction.Right;
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_side_right1.png", UriKind.RelativeOrAbsolute)));
+                    rect.Fill = imageBrush;
+                }
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) + PlayerSpeed);
                 CollideWithBlocks(1, 0);
             }
             if (goUp == true /*&& Canvas.GetTop(rect) > 5*/)
             {
+                if (Direction != Direction.Down)
+                { 
+                    Direction = Direction.Down;
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_back1.png", UriKind.RelativeOrAbsolute)));
+                    rect.Fill = imageBrush;
+                }
                 Canvas.SetTop(rect, Canvas.GetTop(rect) - PlayerSpeed);
                 CollideWithBlocks(0, -1);
-            }
+            }d
             else if (goDown == true /*&& Canvas.GetTop(rect) + (rect.Height * 2) < Application.Current.MainWindow.Height*/)
             {
+                if (Direction != Direction.Up)
+                {
+                    Direction = Direction.Up;
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
+                    rect.Fill = imageBrush;
+                }
                 Canvas.SetTop(rect, Canvas.GetTop(rect) + PlayerSpeed);
                 CollideWithBlocks(0, 1);
             }

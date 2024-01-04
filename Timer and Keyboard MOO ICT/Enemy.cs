@@ -152,11 +152,13 @@ namespace ZeldaWPF
     public class Vampire : IEnemy
     {
         public Rectangle EnemyRectangle { get; set; }
-        public int Health { get; set; }
+        public int Health { get; set; } = 3;
         public Position position { get; set; }
+        Direction Direction { get; set; } = Direction.Down;
         List<Block> blocks;
         int Speed = 2;
         Canvas canvas;
+        ImageBrush imageBrush;
 
         public Vampire(int x, int y, Canvas canvas, List<Block> blocks)
         {
@@ -168,7 +170,7 @@ namespace ZeldaWPF
             EnemyRectangle = new Rectangle();
             EnemyRectangle.Height = 50;
             EnemyRectangle.Width = 50;
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_front1.png", UriKind.RelativeOrAbsolute)));
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_front1.png", UriKind.RelativeOrAbsolute)));
             EnemyRectangle.Fill = imageBrush;
             this.canvas = canvas;
             canvas.Children.Add(EnemyRectangle);
@@ -177,7 +179,7 @@ namespace ZeldaWPF
 
         public void Update(Position playerPosition)
         {
-            double dx = playerPosition.X - position.X;
+            /*double dx = playerPosition.X - position.X;
             double dy = playerPosition.Y - position.Y;
             double norm = Math.Sqrt(dx * dx + dy * dy);
             dx /= norm;
@@ -186,7 +188,69 @@ namespace ZeldaWPF
             this.position.Y += (int)(dy * Speed);
             this.position.X += (int)(dx * Speed);
             Canvas.SetTop(EnemyRectangle, this.position.Y);
-            Canvas.SetLeft(EnemyRectangle, this.position.X);
+            Canvas.SetLeft(EnemyRectangle, this.position.X);*/
+
+            double dx = playerPosition.X - position.X;
+            double dy = playerPosition.Y - position.Y;
+            bool dirToGo = (Math.Abs(dx) > Math.Abs(dy)) ? true : false;
+            if (Math.Abs(dx) > 10 && Math.Abs(dy) > 10)
+            {
+                double norm = Math.Sqrt(dx * dx + dy * dy);
+
+
+
+
+
+                if (dirToGo)
+                {
+                    if (dx > 0 && Direction != Direction.Right)
+                    {
+                        Direction = Direction.Right;
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_side_right1.png", UriKind.RelativeOrAbsolute)));
+                        EnemyRectangle.Fill = imageBrush;
+                    }
+                    else if (dx < 0 && Direction != Direction.Left)
+                    {
+                        Direction = Direction.Left;
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_side_left1.png", UriKind.RelativeOrAbsolute)));
+                        EnemyRectangle.Fill = imageBrush;
+                    }
+                    dx /= norm;
+                    this.position.X += (int)(dx * Speed);
+                    Canvas.SetLeft(EnemyRectangle, this.position.X);
+
+                    //if (dx > 0)
+                    //    CollideWithBlocks(1, 0);
+                    //else if (dx < 0)
+                    //    CollideWithBlocks(-1, 0);
+                }
+                else
+                {
+                    if (dy > 0 && Direction != Direction.Down)
+                    {
+                        Direction = Direction.Down;
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_front1.png", UriKind.RelativeOrAbsolute)));
+                        EnemyRectangle.Fill = imageBrush;
+                    }
+                    else if (dy < 0 && Direction != Direction.Up)
+                    {
+                        Direction = Direction.Up;
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_back1.png", UriKind.RelativeOrAbsolute)));
+                        EnemyRectangle.Fill = imageBrush;
+                    }
+
+                    dy /= norm;
+                    this.position.Y += (int)(dy * Speed);
+                    Canvas.SetTop(EnemyRectangle, this.position.Y);
+
+                    //if (dy > 0)
+                    //    CollideWithBlocks(0, 1);
+                    //else if (dy < 0)
+                    //    CollideWithBlocks(0, -1);
+                }
+
+
+            }
 
             if (dx > 0)
                 CollideWithBlocks(1, 0);
@@ -216,6 +280,142 @@ namespace ZeldaWPF
                         Canvas.SetTop(EnemyRectangle, Canvas.GetTop(block.BlockRect) - block.BlockRect.Height - 1);
                     if (dy < 0) // up
                         Canvas.SetTop(EnemyRectangle, Canvas.GetTop(block.BlockRect) + block.BlockRect.Height + 1 - 10);
+                    //break;
+                }
+
+            }
+        }
+    }
+
+    public class Boss : IEnemy
+    {
+        public Rectangle EnemyRectangle { get; set; }
+        public int Health { get; set; } = 10;
+        public Position position { get; set; }
+        Canvas canvas { get; set; }
+        List<Block> blocks;
+        List<IEnemy> enemies;
+        int Speed = 2;
+        ImageBrush imageBrush;
+        Direction Direction { get; set; } = Direction.Down;
+
+        public Boss(int x, int y, Canvas canvas, List<Block> blocks, List<IEnemy> enemies)
+        {
+            this.position = new Position
+            {
+                X = x,
+                Y = y
+            };
+            EnemyRectangle = new Rectangle();
+            EnemyRectangle.Height = 100;
+            EnemyRectangle.Width = 100;
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_front1.png", UriKind.RelativeOrAbsolute)));
+            EnemyRectangle.Fill = imageBrush;
+            this.canvas = canvas;
+            canvas.Children.Add(EnemyRectangle);
+            this.blocks = blocks;
+            this.enemies = enemies;
+        }
+
+        public void Update(Position playerPosition)
+        {
+            double dx = playerPosition.X - position.X;
+            double dy = playerPosition.Y - position.Y;
+            bool dirToGo = (Math.Abs(dx) > Math.Abs(dy)) ? true : false;
+            if (Math.Abs(dx) > 10 && Math.Abs(dy) > 10)
+            {
+                double norm = Math.Sqrt(dx * dx + dy * dy);
+                
+                
+
+
+
+                if (dirToGo)
+                {
+                    if (dx > 0 && Direction != Direction.Right)
+                    {
+                        Direction = Direction.Right;
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_side_right1.png", UriKind.RelativeOrAbsolute)));
+                        EnemyRectangle.Fill = imageBrush;
+                    }
+                    else if (dx < 0 && Direction != Direction.Left)
+                    {
+                        Direction = Direction.Left;
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_side_left1.png", UriKind.RelativeOrAbsolute)));
+                        EnemyRectangle.Fill = imageBrush;
+                    }
+                    dx /= norm;
+                    this.position.X += (int)(dx * Speed);
+                    Canvas.SetLeft(EnemyRectangle, this.position.X);
+
+                    //if (dx > 0)
+                    //    CollideWithBlocks(1, 0);
+                    //else if (dx < 0)
+                    //    CollideWithBlocks(-1, 0);
+                }
+                else
+                {
+                    if (dy > 0 && Direction != Direction.Down)
+                    {
+                        Direction = Direction.Down;
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_front1.png", UriKind.RelativeOrAbsolute)));
+                        EnemyRectangle.Fill = imageBrush;
+                    }
+                    else if (dy < 0 && Direction != Direction.Up)
+                    {
+                        Direction = Direction.Up;
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_backt1.png", UriKind.RelativeOrAbsolute)));
+                        EnemyRectangle.Fill = imageBrush;
+                    }
+
+                    dy /= norm;
+                    this.position.Y += (int)(dy * Speed);
+                    Canvas.SetTop(EnemyRectangle, this.position.Y);
+
+                    //if (dy > 0)
+                    //    CollideWithBlocks(0, 1);
+                    //else if (dy < 0)
+                    //    CollideWithBlocks(0, -1);
+                }
+
+
+            }
+            
+            
+
+            if (Health == 5)
+            {
+                //Speed = 0;
+                (int, int)[] values = {(-100, 0), (100, 0), (0, 100), (0, -100) };
+                foreach(var value in values)
+                {
+                    var en = new Ghost(position.X + value.Item1, position.Y + value.Item2, canvas);
+                    Canvas.SetTop(en.EnemyRectangle, position.Y + value.Item2);
+                    Canvas.SetLeft(en.EnemyRectangle, position.X + value.Item1);
+                    enemies.Add(en);
+                }
+                Health -= 1;
+            }
+        }
+
+        public void CollideWithBlocks(int dx, int dy)
+        {
+            Rect PlayerHitBox = new Rect(Canvas.GetLeft(EnemyRectangle) + 5, Canvas.GetTop(EnemyRectangle) + 10, EnemyRectangle.ActualWidth - 10, EnemyRectangle.ActualHeight - 10);
+            foreach (Block block in blocks)
+            {
+
+                Rect BlockHitBox = new Rect(Canvas.GetLeft(block.BlockRect), Canvas.GetTop(block.BlockRect), block.BlockRect.ActualWidth, block.BlockRect.ActualHeight);
+
+                if (PlayerHitBox.IntersectsWith(BlockHitBox))
+                {
+                    if (dx > 0) // right
+                        Canvas.SetLeft(EnemyRectangle, Canvas.GetLeft(block.BlockRect) - block.BlockRect.Width * 2 - 1 + 5);
+                    if (dx < 0) // left
+                        Canvas.SetLeft(EnemyRectangle, Canvas.GetLeft(block.BlockRect) + block.BlockRect.Width * 2 + 1 - 5);
+                    if (dy > 0) // down
+                        Canvas.SetTop(EnemyRectangle, Canvas.GetTop(block.BlockRect) - block.BlockRect.Height * 2 - 1);
+                    if (dy < 0) // up
+                        Canvas.SetTop(EnemyRectangle, Canvas.GetTop(block.BlockRect) + block.BlockRect.Height * 2 + 1 - 10);
                     //break;
                 }
 

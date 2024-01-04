@@ -77,6 +77,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.2\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -160,6 +163,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Music\outer_music.mp3" />
+    <Resource Include="Data\Texture\mchar_ver1_noweapon_back1.png" />
+    <Resource Include="Data\Texture\mchar_ver1_noweapon_front1.png" />
+    <Resource Include="Data\Texture\mchar_ver1_noweapon_side_right1.png" />
+    <Resource Include="Data\Texture\mchar_ver1_side_left1.png" />
+    <Resource Include="Data\Texture\vampire_back1.png" />
+    <Resource Include="Data\Texture\vampire_side_right1.png" />
+    <Resource Include="Data\Texture\vampire_side_left1.png" />
+    <Resource Include="Data\Texture\boss_backt1.png" />
+    <Resource Include="Data\Texture\boss_side_right1.png" />
+    <Resource Include="Data\Texture\boss_side_left1.png" />
+    <Resource Include="Data\Texture\boss_front1.png" />
     <Resource Include="Data\Texture\vampire_front1.png" />
     <Resource Include="Data\Texture\zombie_front1.png" />
     <Resource Include="Data\Texture\ghost_front1.png" />

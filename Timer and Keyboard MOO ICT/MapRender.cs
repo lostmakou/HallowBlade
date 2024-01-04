@@ -19,13 +19,14 @@ namespace ZeldaWPF
         Canvas myCanvas;
         public List<Block> blocks;
         public List<IEnemy> enemies;
+        public List<IEnemy> tempEnemies;
         public string[] notes = new string[20];
         public MapRender(Canvas myCanvas) 
         {
             this.myCanvas = myCanvas; 
             blocks = new List<Block>();
             enemies = new List<IEnemy>();
-            
+            tempEnemies = new List<IEnemy>();
         }
         public void Render((int, int) area) 
         {
@@ -116,9 +117,11 @@ namespace ZeldaWPF
                 if (enemy.Type == "Ghost")
                     en = new Ghost(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas);
                 else if (enemy.Type == "Zombie")
-                    en = new Zombie( enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks);
+                    en = new Zombie(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks);
                 else if (enemy.Type == "Vampire")
                     en = new Vampire(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks);
+                else if (enemy.Type == "Boss")
+                    en = new Boss(enemy.Position.X * 50, 100 + enemy.Position.Y * 50, myCanvas, blocks, tempEnemies);
                 Canvas.SetTop(en.EnemyRectangle, 100 + enemy.Position.Y * 50);
                 Canvas.SetLeft(en.EnemyRectangle, enemy.Position.X * 50);
                 enemies.Add(en);
