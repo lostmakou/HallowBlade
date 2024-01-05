@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:ZeldaWPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="EpilepsySans">\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Fonts\EpilepsySans.ttf#Epilepsy Sans</FontFamily>
+        <FontFamily x:Key="EpilepsySansBold">\\Mac\Home\Desktop\HallowBlade\Timer and Keyboard MOO ICT\Data\Fonts\EpilepsySansBold.ttf#Epilepsy Sans</FontFamily>
     </Application.Resources>
 </Application>

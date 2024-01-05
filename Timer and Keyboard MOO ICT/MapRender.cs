@@ -21,55 +21,42 @@ namespace ZeldaWPF
         public List<IEnemy> enemies;
         public List<IEnemy> tempEnemies;
         public string[] notes = new string[20];
+        ScreensData screens;
+        DungeonData dungeons;
+        NotesData notesData;
         public MapRender(Canvas myCanvas) 
         {
             this.myCanvas = myCanvas; 
             blocks = new List<Block>();
             enemies = new List<IEnemy>();
             tempEnemies = new List<IEnemy>();
+            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\outer.json");
+            screens = JsonSerializer.Deserialize<ScreensData>(jsonString);
+            jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\dungeon.json");
+            dungeons = JsonSerializer.Deserialize<DungeonData>(jsonString);
+            jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\note.json");
+            notesData = JsonSerializer.Deserialize<NotesData>(jsonString);
         }
         public void Render((int, int) area) 
         {
-            foreach (Block bl in blocks)
-            {
-                myCanvas.Children.Remove(bl.BlockRect);
-            }
-            blocks.Clear();
-            enemies.Clear();
+            RemoveObjects();
 
-            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\outer.json");
-            
-            ScreensData screens = JsonSerializer.Deserialize<ScreensData>(jsonString);
-            //List<string> lvl = new List<string>();
             foreach (Screen s in screens.Screens)
             {
                 if (s.Position.X == area.Item1 &&  s.Position.Y == area.Item2)
                 {
-                    //lvl = s.Layout;
-
                     DrawBlocks(s.Layout);
                     DrawEnemies(s.Enemies);
+                    DrawNotes(area);
                     break;
                 }
             }
-
-
-            
-            //DrawNotes(area);
-            
         }
 
         public void RenderDungeon((int, int) dungeonArea, char Dungeon)
         {
-            foreach (Block bl in blocks)
-            {
-                myCanvas.Children.Remove(bl.BlockRect);
-            }
-            blocks.Clear();
-            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\dungeon.json");
+            RemoveObjects();
 
-            DungeonData dungeons = JsonSerializer.Deserialize<DungeonData>(jsonString);
-            List<string> lvl = new List<string>();
             foreach (ScreenDataDungeon sd in dungeons.Dungeons)
             {
                 if (sd.Dungeon == Dungeon.ToString())
@@ -78,13 +65,23 @@ namespace ZeldaWPF
                     {
                         if (s.Position.X == dungeonArea.Item1 && s.Position.Y == dungeonArea.Item2)
                         {
-                            lvl = s.Layout;
+                            DrawBlocks(s.Layout);
+                            DrawEnemies(s.Enemies);
+                            break;
                         }
                     }
                 }
-                
             }
-            DrawBlocks(lvl);
+        }
+
+        private void RemoveObjects()
+        {
+            foreach (Block bl in blocks)
+                myCanvas.Children.Remove(bl.BlockRect);
+            foreach (IEnemy enemy in enemies)
+                myCanvas.Children.Remove(enemy.EnemyRectangle);
+            blocks.Clear();
+            enemies.Clear();
         }
 
         private void DrawBlocks(List<string> lvl)
@@ -130,22 +127,25 @@ namespace ZeldaWPF
 
         private void DrawNotes((int, int) area)
         {
-            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\note.json");
-            NotesData notesData = JsonSerializer.Deserialize<NotesData>(jsonString);
             foreach (Note note in notesData.Notes)
             {
-                if (note.Position.X == area.Item1 && note.Position.Y == area.Item2 )//&& notes[note.Id] != null)
+                if (note.ScreenPosition.X == area.Item1 && note.ScreenPosition.Y == area.Item2)//&& notes[note.Id] != null)
                 {
-                    var bl = new Block('⎕', note.ScreenPosition.X * 50, note.ScreenPosition.Y * 50);
+                    var bl = new Block('⎕', note.Position.X * 50, note.Position.Y * 50);
                     bl.Id = note.Id;
                     myCanvas.Children.Add(bl.BlockRect);
-                    Canvas.SetTop(bl.BlockRect, note.ScreenPosition.Y * 50);
-                    Canvas.SetLeft(bl.BlockRect, note.ScreenPosition.X * 50);
+                    Canvas.SetTop(bl.BlockRect, note.Position.Y * 50);
+                    Canvas.SetLeft(bl.BlockRect, note.Position.X * 50);
                     blocks.Add(bl);
 
                     notes[note.Id] = note.NoteString;
                 }
             }
+        }
+
+        private void DrawItems()
+        {
+
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
+using WpfAnimatedGif;
 
 namespace ZeldaWPF {
 
@@ -21,9 +22,9 @@ namespace ZeldaWPF {
         private int PlayerSpeed;
         Canvas myCanvas;
         MapRender mr;
-        private List<TextBlock> InfoText = new List<TextBlock>();
+        //private List<TextBlock> InfoText = new List<TextBlock>();
         private Direction Direction { get; set; } = Direction.Down;
-        public bool isMatchedSword = false;
+        public bool isMatchedSword = true;
         public int Health;
         public (int, int) Area;
         public (int, int) DungeonArea;
@@ -32,6 +33,8 @@ namespace ZeldaWPF {
         public int Money;
         public int Invincibility { get; set; }
         ImageBrush imageBrush;
+
+        TextBlock OuterScreen, HealthInfo;
 
         public Player(Canvas canvas, MapRender mr)
         {
@@ -52,15 +55,23 @@ namespace ZeldaWPF {
             Canvas.SetLeft(rect, 400);
             Canvas.SetTop(rect, 300);
             imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
+
+            
             rect.Fill = imageBrush;
+
             PlayerSpeed = 5;
-            Health = 3;
+            Health = 10;
             Area = (0, 0);
             InDungeon = false;
             Invincibility = 0;
             this.mr = mr;
             mr.Render(Area);
             BringToFront();
+
+            OuterScreen = canvas.FindName("OuterScreen") as TextBlock;
+            //DungeonScreen = canvas.FindName("DungeonScreen") as TextBlock;
+            HealthInfo = canvas.FindName("Health") as TextBlock;
+
         }
 
         public void Update()
@@ -124,14 +135,17 @@ namespace ZeldaWPF {
                 {
                     DungeonArea.Item1 += 1;
                     mr.RenderDungeon(DungeonArea, Dungeon);
+                    OuterScreen.Text = $"Экран подземелья: {DungeonArea.Item1} - {DungeonArea.Item2}";
                 }
                 else
                 {
                     Area.Item1 += 1;
                     mr.Render(Area);
+                    OuterScreen.Text = $"Экран: {Area.Item1} - {Area.Item2}";
                 }
                 BringToFront();
                 Canvas.SetLeft(rect, 1);
+
             }
             if (Canvas.GetLeft(rect) < 1)
             {
@@ -141,11 +155,13 @@ namespace ZeldaWPF {
                 {
                     DungeonArea.Item1 -= 1;
                     mr.RenderDungeon(DungeonArea, Dungeon);
+                    OuterScreen.Text = $"Экран подземелья: {DungeonArea.Item1} - {DungeonArea.Item2}";
                 }
                 else
                 {
                     Area.Item1 -= 1;
                     mr.Render(Area);
+                    OuterScreen.Text = $"Экран: {Area.Item1} - {Area.Item2}";
                 }
                 BringToFront();
                 Canvas.SetLeft(rect, Application.Current.MainWindow.ActualWidth - rect.ActualWidth);
@@ -158,14 +174,17 @@ namespace ZeldaWPF {
                 {
                     DungeonArea.Item2 += 1;
                     mr.RenderDungeon(DungeonArea, Dungeon);
+                    OuterScreen.Text = $"Экран подземелья: {DungeonArea.Item1} - {DungeonArea.Item2}";
                 }
                 else
                 {
                     Area.Item2 += 1;
                     mr.Render(Area);
+                    OuterScreen.Text = $"Экран: {Area.Item1} - {Area.Item2}";
                 }
                 BringToFront();
                 Canvas.SetTop(rect, 100);
+                
             }
             if (Canvas.GetTop(rect) < 100)
             {
@@ -174,16 +193,38 @@ namespace ZeldaWPF {
                 {
                     DungeonArea.Item2 -= 1;
                     mr.RenderDungeon(DungeonArea, Dungeon);
+                    OuterScreen.Text = $"Экран подземелья: {DungeonArea.Item1} - {DungeonArea.Item2}";
                 }
                 else
                 {
                     Area.Item2 -= 1;
                     mr.Render(Area);
+                    OuterScreen.Text = $"Экран: {Area.Item1} - {Area.Item2}";
                 }
                 BringToFront();
                 Canvas.SetTop(rect, Application.Current.MainWindow.ActualHeight - rect.ActualHeight);
             }
 
+            //foreach (Block block in mr.blocks)
+            //{
+            //    if (block.Type == '⎕')
+            //    {
+            //        double dx = Canvas.GetLeft(rect) - Canvas.GetLeft(block.BlockRect);
+            //        double dy = Canvas.GetTop(rect) - Canvas.GetTop(block.BlockRect);
+            //        double dist = Math.Sqrt(dx * dx + dy * dy);
+            //        if (dist < 50)
+            //        {
+            //            TextBlock areaText = new TextBlock();
+            //            areaText.Text = $"Экран: {Area.Item1} - {Area.Item2}";
+            //            areaText.FontSize = 20;
+            //            areaText.Foreground = Brushes.White;
+            //            myCanvas.Children.Add(areaText);
+            //            Canvas.SetLeft(areaText, 30);
+            //            Canvas.SetTop(areaText, 20);
+            //            //InfoText.Add(areaText);
+            //        }
+            //    }
+            //}
         }
 
         public void CollideWithEnemies()
@@ -200,6 +241,7 @@ namespace ZeldaWPF {
                     {
                         Health -= 1;
                         Invincibility = 30;
+                        HealthInfo.Text = $"Здоровье: {Health}";
                     }
 
                 }
@@ -229,6 +271,7 @@ namespace ZeldaWPF {
                     if (block.isDungeon)
                     {
                         DungeonArea = (0, 0);
+                        OuterScreen.Text = $"Экран подземелья: {DungeonArea.Item1} - {DungeonArea.Item2}";
                         if (InDungeon)
                         {
                             Dungeon = '_';
@@ -244,6 +287,7 @@ namespace ZeldaWPF {
                             myCanvas.Background = imageBrush;
                             mr.Render(Area);
                             BringToFront();
+                            OuterScreen.Text = $"Экран: {Area.Item1} - {Area.Item2}";
                             break;
                         }
                         else
@@ -257,19 +301,19 @@ namespace ZeldaWPF {
                             break;
                         }
                     }
-                    else if (block.Type == '⎕') 
-                    {
-                        TextBlock areaText = new TextBlock();
-                        areaText.Text = $"{mr.notes[block.Id]}";
-                        areaText.FontSize = 20;
-                        areaText.Foreground = Brushes.White;
-                        myCanvas.Children.Add(areaText);
-                        Canvas.SetLeft(areaText, 200);
-                        Canvas.SetTop(areaText, 20);
-                        myCanvas.Children.Remove(block.BlockRect);
-                        mr.blocks.Remove(block);
-                        break;
-                    }
+                    //else if (block.Type == '⎕') 
+                    //{
+                    //    TextBlock areaText = new TextBlock();
+                    //    areaText.Text = $"{mr.notes[block.Id]}";
+                    //    areaText.FontSize = 20;
+                    //    areaText.Foreground = Brushes.White;
+                    //    myCanvas.Children.Add(areaText);
+                    //    Canvas.SetLeft(areaText, 200);
+                    //    Canvas.SetTop(areaText, 20);
+                    //    myCanvas.Children.Remove(block.BlockRect);
+                    //    mr.blocks.Remove(block);
+                    //    break;
+                    //}
 
                 }
             }
@@ -286,40 +330,40 @@ namespace ZeldaWPF {
             myCanvas.Children.Add(rect);
         }
 
-        public void PrintInfo()
-        {
-            foreach (TextBlock textBlock in InfoText)
-            {
-                myCanvas.Children.Remove(textBlock);
-            }
-            InfoText.Clear();
+    //    public void PrintInfo()
+    //    {
+    //        foreach (TextBlock textBlock in InfoText)
+    //        {
+    //            myCanvas.Children.Remove(textBlock);
+    //        }
+    //        InfoText.Clear();
 
-            TextBlock areaText = new TextBlock();
-            areaText.Text = $"Экран: {Area.Item1} - {Area.Item2}";
-            areaText.FontSize = 20;
-            areaText.Foreground = Brushes.White;
-            myCanvas.Children.Add(areaText);
-            Canvas.SetLeft(areaText, 30);
-            Canvas.SetTop(areaText, 20);
-            InfoText.Add(areaText);
+    //        TextBlock areaText = new TextBlock();
+    //        areaText.Text = $"Экран: {Area.Item1} - {Area.Item2}";
+    //        areaText.FontSize = 20;
+    //        areaText.Foreground = Brushes.White;
+    //        myCanvas.Children.Add(areaText);
+    //        Canvas.SetLeft(areaText, 30);
+    //        Canvas.SetTop(areaText, 20);
+    //        InfoText.Add(areaText);
 
-            TextBlock healthText = new TextBlock();
-            healthText.Text = $"Здоровье: {Health}";
-            healthText.FontSize = 20;
-            healthText.Foreground = Brushes.White;
-            myCanvas.Children.Add(healthText);
-            Canvas.SetLeft(healthText, 30);
-            Canvas.SetTop(healthText, 50);
-            InfoText.Add(healthText);
+    //        TextBlock healthText = new TextBlock();
+    //        healthText.Text = $"Здоровье: {Health}";
+    //        healthText.FontSize = 20;
+    //        healthText.Foreground = Brushes.White;
+    //        myCanvas.Children.Add(healthText);
+    //        Canvas.SetLeft(healthText, 30);
+    //        Canvas.SetTop(healthText, 50);
+    //        InfoText.Add(healthText);
 
-            TextBlock dungeonText = new TextBlock();
-            dungeonText.Text = $"Экран данжа: {DungeonArea.Item1} - {DungeonArea.Item2}";
-            dungeonText.FontSize = 20;
-            dungeonText.Foreground = Brushes.White;
-            myCanvas.Children.Add(dungeonText);
-            Canvas.SetLeft(dungeonText, 200);
-            Canvas.SetTop(dungeonText, 50);
-            InfoText.Add(dungeonText);
-        }
+    //        TextBlock dungeonText = new TextBlock();
+    //        dungeonText.Text = $"Экран данжа: {DungeonArea.Item1} - {DungeonArea.Item2}";
+    //        dungeonText.FontSize = 20;
+    //        dungeonText.Foreground = Brushes.White;
+    //        myCanvas.Children.Add(dungeonText);
+    //        Canvas.SetLeft(dungeonText, 200);
+    //        Canvas.SetTop(dungeonText, 50);
+    //        InfoText.Add(dungeonText);
+    //    }
     }
-};
+}

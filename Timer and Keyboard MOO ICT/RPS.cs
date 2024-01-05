@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using ZeldaWPF;
 
 namespace RPS
 {
@@ -21,7 +22,7 @@ namespace RPS
     /// </summary>
     public partial class CanvasHandlerClass
     {
-
+        public bool isWin { get; set; } = false;
         int rounds = 3;
         int timerPerRound = 6;
         bool gameover = false;
@@ -32,17 +33,19 @@ namespace RPS
         string playerChoice;
         int playerwins;
         int AIwins;
-        Canvas canvas;
-        public DispatcherTimer gameTimer = new DispatcherTimer();
+        Canvas canvas, mainCanvas;
+        public DispatcherTimer gameTimer = new DispatcherTimer(), mainTimer;
 
         // Кнопки, прямоугольники, прочая фигня
         Button bntRock, btnScissors, btnPaper;
         Rectangle picPlayer, picCPU;
         TextBlock txtMessage, roundsText, txtTime;
 
-        public CanvasHandlerClass(Canvas canvas)
+        public CanvasHandlerClass(Canvas canvas, Canvas mainCanvas, DispatcherTimer mainTimer)
         {
             this.canvas = canvas;
+            this.mainCanvas = mainCanvas;
+            this.mainTimer = mainTimer;
             picPlayer = canvas.FindName("picPlayer") as Rectangle;
             picCPU = canvas.FindName("picCPU") as Rectangle;
             txtMessage = canvas.FindName("txtMessage") as TextBlock;
@@ -129,12 +132,18 @@ namespace RPS
                     if (playerwins > AIwins)
                     {
                         MessageBox.Show("Вы выиграли эту игру");
+                        
+                        isWin = true;
+                        
                     }
                     else
                     {
                         MessageBox.Show("Босс выиграл эту игру");
                     }
-
+                    gameTimer.Stop();
+                    canvas.Visibility = Visibility.Collapsed;
+                    mainCanvas.Visibility = Visibility.Visible;
+                    mainTimer.Start();
                     gameover = true;
                 }
             }

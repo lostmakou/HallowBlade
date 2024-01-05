@@ -19,7 +19,17 @@
           "Position": {
             "X": 0,
             "Y": 0
-          }
+          },
+          "Enemies": [
+            {
+              "Type": "Ghost",
+              "Position": {
+                "X": 5,
+                "Y": 5
+              }
+            }
+          ],
+          "Item": []
         },
         {
           "Layout": [
@@ -37,7 +47,9 @@
           "Position": {
             "X": 1,
             "Y": 0
-          }
+          },
+          "Enemies": [],
+          "Item": []
         },
         {
           "Layout": [
@@ -55,7 +67,9 @@
           "Position": {
             "X": -1,
             "Y": 0
-          }
+          },
+          "Enemies": [],
+          "Item": []
         },
         {
           "Layout": [
@@ -73,7 +87,9 @@
           "Position": {
             "X": 0,
             "Y": -1
-          }
+          },
+          "Enemies": [],
+          "Item": []
         }
       ]
     },
@@ -96,7 +112,9 @@
           "Position": {
             "X": 0,
             "Y": 0
-          }
+          },
+          "Enemies": [],
+          "Item": []
         },
         {
           "Layout": [
@@ -114,7 +132,9 @@
           "Position": {
             "X": 1,
             "Y": 0
-          }
+          },
+          "Enemies": [],
+          "Item": []
         }
       ]
     }

@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Enemy.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="RPS.cs" />
     <Compile Include="Sword.cs" />
     <Page Include="MainWindow.xaml">
@@ -125,6 +126,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Data\Font\ComicoroRu_0.ttf" />
+    <Resource Include="Data\Font\EpilepsySans.ttf" />
+    <Resource Include="Data\Font\EpilepsySansBold.ttf" />
     <None Include="Data\Map\dungeon.json" />
     <None Include="Data\Map\note.json" />
     <None Include="Data\Map\outer.json" />
@@ -164,6 +168,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Music\outer_music.mp3" />
+    <Resource Include="Data\Texture\Gallows.png" />
+    <Resource Include="Data\Texture\blade.png" />
+    <Resource Include="Data\Texture\mchar_ver1_animation_noweapon_front-export.gif" />
+    <Resource Include="Data\Texture\wasd_buttons.png" />
+    <Resource Include="Data\Texture\E_button.png" />
+    <Resource Include="Data\Texture\arrows_buttons.png" />
+    <Resource Include="Data\Texture\menu_ver2.png" />
+    <Resource Include="Data\Texture\Stone_with_a_note.png" />
+    <Resource Include="Data\Texture\Web_center.png" />
+    <Resource Include="Data\Texture\Web_left.png" />
+    <Resource Include="Data\Texture\Web_right.png" />
+    <Resource Include="Data\Texture\Cross.png" />
+    <Resource Include="Data\Texture\Coffin.png" />
     <Resource Include="Data\Texture\Fist_boss.png" />
     <Resource Include="Data\Texture\Fist_gg.png" />
     <Resource Include="Data\Texture\game_2_background.png" />

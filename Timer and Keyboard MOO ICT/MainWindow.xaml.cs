@@ -29,7 +29,7 @@ namespace ZeldaWPF
         HashSet<Key> keys = new HashSet<Key>();
         Sword sword;
 
-        DispatcherTimer gameTimer = new DispatcherTimer();
+        public DispatcherTimer gameTimer = new DispatcherTimer();
 
         private CanvasHandlerClass RPS;
 
@@ -49,7 +49,7 @@ namespace ZeldaWPF
             KeyUp += MainWindow_KeyUp;
 
 
-            RPS = new CanvasHandlerClass(RockPaperScissors);
+            RPS = new CanvasHandlerClass(RockPaperScissors, myCanvas, gameTimer);
 
         }
 
@@ -60,7 +60,7 @@ namespace ZeldaWPF
 
             //mr.Render(Player.Area);
             Player.Update();
-            Player.PrintInfo();
+            //Player.PrintInfo();
             if (sword != null)
                 if (sword.Update())
                     sword = null;
@@ -99,6 +99,25 @@ namespace ZeldaWPF
                     mr.tempEnemies.Clear();
                     break;
                 }
+                if (en is Boss)
+                {
+                    var enemy = (Boss)en;
+                    if (enemy.Health == 1)
+                    {
+                        gameTimer.Stop();
+                        myCanvas.Visibility = Visibility.Collapsed;
+                        RockPaperScissors.Visibility = Visibility.Visible;
+                        RPS.gameTimer.Start();
+                        if (RPS.isWin)
+                        {
+                            enemy.Health = 5;   
+                        }
+                        else
+                        {
+                            enemy.Health = 0;
+                        }
+                    }
+                }
             }
 
             if (Player.Health <= 0)
@@ -112,12 +131,7 @@ namespace ZeldaWPF
             }
 
 
-            //Canvas.SetLeft(box, Canvas.GetLeft(box) - speed);
-
-            //if (Canvas.GetLeft(box) < 5 || Canvas.GetLeft(box) + (box.Width * 2) > Application.Current.MainWindow.Width)
-            //{
-            //    speed = -speed;
-            //}AccessTexAp
+            
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -154,13 +168,27 @@ namespace ZeldaWPF
                         sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Left, myCanvas);
                     if (key == Key.Right)
                         sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Right, myCanvas);
+                    Player.BringToFront();
                 }
-                if (key == Key.Y)
+                if (key == Key.E)
                 {
-                    gameTimer.Stop();
-                    myCanvas.Visibility = Visibility.Collapsed;
-                    RockPaperScissors.Visibility = Visibility.Visible;
-                    RPS.gameTimer.Start();
+                    foreach (Block block in mr.blocks)
+                    {
+                        if (block.Type == '⎕')
+                        {
+                            double dx = Canvas.GetLeft(Player.rect) - Canvas.GetLeft(block.BlockRect);
+                            double dy = Canvas.GetTop(Player.rect) - Canvas.GetTop(block.BlockRect);
+                            double dist = Math.Sqrt(dx * dx + dy * dy);
+                            if (dist < 50)
+                            {
+                                MessageText.Text = mr.notes[block.Id];
+                                myCanvas.Visibility = Visibility.Collapsed;
+                                gameTimer.Stop();
+                                Message.Visibility = Visibility.Visible;
+                                
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -168,8 +196,15 @@ namespace ZeldaWPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainMenu.Visibility = Visibility.Collapsed;
+            Message.Visibility = Visibility.Visible;
+            
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Message.Visibility = Visibility.Collapsed;
             myCanvas.Visibility = Visibility.Visible;
-            //outer_music.IsMuted = false;
+            Conttol.Visibility = Visibility.Collapsed;
             gameTimer.Start();
         }
 
