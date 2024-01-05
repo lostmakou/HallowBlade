@@ -56,7 +56,7 @@ namespace ZeldaWPF
             EnemyRectangle = new Rectangle();
             EnemyRectangle.Height = 50;
             EnemyRectangle.Width = 50;
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\ghost_front1.png", UriKind.RelativeOrAbsolute)));
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\ghost_front1.png", UriKind.RelativeOrAbsolute)));
             EnemyRectangle.Fill = imageBrush;
             this.canvas = canvas;
             canvas.Children.Add(EnemyRectangle);
@@ -97,7 +97,7 @@ namespace ZeldaWPF
             EnemyRectangle = new Rectangle();
             EnemyRectangle.Height = 50;
             EnemyRectangle.Width = 50;
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\zombie_front1.png", UriKind.RelativeOrAbsolute)));
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\zombie_front1.png", UriKind.RelativeOrAbsolute)));
             EnemyRectangle.Fill = imageBrush;
             this.canvas = canvas;
             canvas.Children.Add(EnemyRectangle);
@@ -163,7 +163,7 @@ namespace ZeldaWPF
             EnemyRectangle = new Rectangle();
             EnemyRectangle.Height = 50;
             EnemyRectangle.Width = 50;
-            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_front1.png", UriKind.RelativeOrAbsolute)));
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\vampire_front1.png", UriKind.RelativeOrAbsolute)));
             EnemyRectangle.Fill = imageBrush;
             this.canvas = canvas;
             canvas.Children.Add(EnemyRectangle);
@@ -200,13 +200,13 @@ namespace ZeldaWPF
                     if (dx > 0 && Direction != Direction.Right)
                     {
                         Direction = Direction.Right;
-                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_side_right1.png", UriKind.RelativeOrAbsolute)));
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\vampire_side_right1.png", UriKind.RelativeOrAbsolute)));
                         EnemyRectangle.Fill = imageBrush;
                     }
                     else if (dx < 0 && Direction != Direction.Left)
                     {
                         Direction = Direction.Left;
-                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_side_left1.png", UriKind.RelativeOrAbsolute)));
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\vampire_side_left1.png", UriKind.RelativeOrAbsolute)));
                         EnemyRectangle.Fill = imageBrush;
                     }
                     dx /= norm;
@@ -223,13 +223,13 @@ namespace ZeldaWPF
                     if (dy > 0 && Direction != Direction.Down)
                     {
                         Direction = Direction.Down;
-                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_front1.png", UriKind.RelativeOrAbsolute)));
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\vampire_front1.png", UriKind.RelativeOrAbsolute)));
                         EnemyRectangle.Fill = imageBrush;
                     }
                     else if (dy < 0 && Direction != Direction.Up)
                     {
                         Direction = Direction.Up;
-                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\vampire_back1.png", UriKind.RelativeOrAbsolute)));
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\vampire_back1.png", UriKind.RelativeOrAbsolute)));
                         EnemyRectangle.Fill = imageBrush;
                     }
 
@@ -278,7 +278,7 @@ namespace ZeldaWPF
             EnemyRectangle = new Rectangle();
             EnemyRectangle.Height = 100;
             EnemyRectangle.Width = 100;
-            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_front1.png", UriKind.RelativeOrAbsolute)));
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\boss_front1.png", UriKind.RelativeOrAbsolute)));
             EnemyRectangle.Fill = imageBrush;
             this.canvas = canvas;
             canvas.Children.Add(EnemyRectangle);
@@ -305,13 +305,13 @@ namespace ZeldaWPF
                     if (dx > 0 && Direction != Direction.Right)
                     {
                         Direction = Direction.Right;
-                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_side_right1.png", UriKind.RelativeOrAbsolute)));
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\boss_side_right1.png", UriKind.RelativeOrAbsolute)));
                         EnemyRectangle.Fill = imageBrush;
                     }
                     else if (dx < 0 && Direction != Direction.Left)
                     {
                         Direction = Direction.Left;
-                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_side_left1.png", UriKind.RelativeOrAbsolute)));
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\boss_side_left1.png", UriKind.RelativeOrAbsolute)));
                         EnemyRectangle.Fill = imageBrush;
                     }
                     dx /= norm;
@@ -328,13 +328,13 @@ namespace ZeldaWPF
                     if (dy > 0 && Direction != Direction.Down)
                     {
                         Direction = Direction.Down;
-                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_front1.png", UriKind.RelativeOrAbsolute)));
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\boss_front1.png", UriKind.RelativeOrAbsolute)));
                         EnemyRectangle.Fill = imageBrush;
                     }
                     else if (dy < 0 && Direction != Direction.Up)
                     {
                         Direction = Direction.Up;
-                        imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\boss_backt1.png", UriKind.RelativeOrAbsolute)));
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\boss_backt1.png", UriKind.RelativeOrAbsolute)));
                         EnemyRectangle.Fill = imageBrush;
                     }
 

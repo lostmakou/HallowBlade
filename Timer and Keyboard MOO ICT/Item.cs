@@ -25,11 +25,11 @@ namespace HallowBlade
             ItemRectangle.Height = 50;
             if (Name == "Sword")
             {
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\blade.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\blade.png", UriKind.RelativeOrAbsolute)));
             }
             else if (Name == "Key")
             {
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Gallows.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Gallows.png", UriKind.RelativeOrAbsolute)));
 
             }
         }

@@ -44,7 +44,7 @@ namespace ZeldaWPF {
             //rect.Fill = Brushes.Red;
             myCanvas = canvas;
             myCanvas.Children.Add(rect);
-            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
             {
                 TileMode = TileMode.Tile,
                 Viewport = new Rect(0, 0, 50, 50),
@@ -54,7 +54,7 @@ namespace ZeldaWPF {
             myCanvas.Background = imageBrush;
             Canvas.SetLeft(rect, 400);
             Canvas.SetTop(rect, 300);
-            imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
 
             
             rect.Fill = imageBrush;
@@ -88,7 +88,7 @@ namespace ZeldaWPF {
                 if (Direction != Direction.Left)
                 {
                     Direction = Direction.Left;
-                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_side_left1.png", UriKind.RelativeOrAbsolute)));
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\mchar_ver1_side_left1.png", UriKind.RelativeOrAbsolute)));
                     rect.Fill= imageBrush;
                 }
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) - PlayerSpeed);
@@ -99,7 +99,7 @@ namespace ZeldaWPF {
                 if (Direction != Direction.Right)
                 {
                     Direction = Direction.Right;
-                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_side_right1.png", UriKind.RelativeOrAbsolute)));
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\mchar_ver1_noweapon_side_right1.png", UriKind.RelativeOrAbsolute)));
                     rect.Fill = imageBrush;
                 }
                 Canvas.SetLeft(rect, Canvas.GetLeft(rect) + PlayerSpeed);
@@ -110,7 +110,7 @@ namespace ZeldaWPF {
                 if (Direction != Direction.Down)
                 { 
                     Direction = Direction.Down;
-                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_back1.png", UriKind.RelativeOrAbsolute)));
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\mchar_ver1_noweapon_back1.png", UriKind.RelativeOrAbsolute)));
                     rect.Fill = imageBrush;
                 }
                 Canvas.SetTop(rect, Canvas.GetTop(rect) - PlayerSpeed);
@@ -121,7 +121,7 @@ namespace ZeldaWPF {
                 if (Direction != Direction.Up)
                 {
                     Direction = Direction.Up;
-                    imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\mchar_ver1_noweapon_front1.png", UriKind.RelativeOrAbsolute)));
                     rect.Fill = imageBrush;
                 }
                 Canvas.SetTop(rect, Canvas.GetTop(rect) + PlayerSpeed);
@@ -277,7 +277,7 @@ namespace ZeldaWPF {
                             Dungeon = '_';
                             InDungeon = false;
                             // Телепорт в предыдущее место
-                            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
+                            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
                             {
                                 TileMode = TileMode.Tile,
                                 Viewport = new Rect(0, 0, 50, 50),

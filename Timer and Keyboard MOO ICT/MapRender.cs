@@ -30,11 +30,11 @@ namespace ZeldaWPF
             blocks = new List<Block>();
             enemies = new List<IEnemy>();
             tempEnemies = new List<IEnemy>();
-            string jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\outer.json");
+            string jsonString = File.ReadAllText("../../Data/Map/outer.json");
             screens = JsonSerializer.Deserialize<ScreensData>(jsonString);
-            jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\dungeon.json");
+            jsonString = File.ReadAllText("../../Data\\Map\\dungeon.json");
             dungeons = JsonSerializer.Deserialize<DungeonData>(jsonString);
-            jsonString = File.ReadAllText("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Map\\note.json");
+            jsonString = File.ReadAllText("../../Data\\Map\\note.json");
             notesData = JsonSerializer.Deserialize<NotesData>(jsonString);
         }
         public void Render((int, int) area) 

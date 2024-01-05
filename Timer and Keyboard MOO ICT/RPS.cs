@@ -72,20 +72,20 @@ namespace RPS
 
         private void btnRock_Click(object sender, EventArgs e)
         {
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Fist_gg.png", UriKind.RelativeOrAbsolute)));
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Fist_gg.png", UriKind.RelativeOrAbsolute)));
             picPlayer.Fill = imageBrush;
             playerChoice = "rock";
         }
         private void btnPaper_Click(object sender, EventArgs e)
         {
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Paper_gg.png", UriKind.RelativeOrAbsolute)));
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Paper_gg.png", UriKind.RelativeOrAbsolute)));
             picPlayer.Fill = imageBrush;
             playerChoice = "paper";
         }
 
         private void btnScissors_Click(object sender, EventArgs e)
         {
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Scissors_gg.png", UriKind.RelativeOrAbsolute)));
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Scissors_gg.png", UriKind.RelativeOrAbsolute)));
             picPlayer.Fill = imageBrush;
             playerChoice = "scissor";
         }
@@ -109,15 +109,15 @@ namespace RPS
                 switch (CPUchoice)
                 {
                     case "rock":
-                        ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Fist_boss.png", UriKind.RelativeOrAbsolute)));
+                        ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Fist_boss.png", UriKind.RelativeOrAbsolute)));
                         picCPU.Fill = imageBrush;
                         break;
                     case "paper":
-                        ImageBrush imageBrush1 = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Paper_boss.png", UriKind.RelativeOrAbsolute)));
+                        ImageBrush imageBrush1 = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Paper_boss.png", UriKind.RelativeOrAbsolute)));
                         picCPU.Fill = imageBrush1;
                         break;
                     case "scissor":
-                        ImageBrush imageBrush2 = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Scissors_boss.png", UriKind.RelativeOrAbsolute)));
+                        ImageBrush imageBrush2 = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Scissors_boss.png", UriKind.RelativeOrAbsolute)));
                         picCPU.Fill = imageBrush2;
                         break;
                 }
@@ -238,7 +238,7 @@ namespace RPS
 
             gameTimer.Start();
 
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Question_button.png", UriKind.RelativeOrAbsolute)));
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Question_button.png", UriKind.RelativeOrAbsolute)));
             picPlayer.Fill = imageBrush;
             picCPU.Fill = imageBrush;
         }
@@ -255,7 +255,7 @@ namespace RPS
 
             gameTimer.Start();
 
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Question_button.png", UriKind.RelativeOrAbsolute)));
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Question_button.png", UriKind.RelativeOrAbsolute)));
             picPlayer.Fill = imageBrush;
             picCPU.Fill = imageBrush;
 

@@ -143,6 +143,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Data\Texture\ok_button.png" />
     <Resource Include="Data\Texture\Stone.png" />
   </ItemGroup>
   <ItemGroup>

@@ -30,27 +30,27 @@ namespace ZeldaWPF
         {
             ImageBrush imageBrush = new ImageBrush();
             if (Type == '$')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Water.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Water.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '#')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Stone_wall.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Stone_wall.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '!')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\Tree.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Tree.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '*')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\\Timer and Keyboard MOO ICT\\Data\\Texture\\torch.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\torch.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '%')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Stone.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Stone.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '(')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Coffin.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Coffin.png", UriKind.RelativeOrAbsolute)));
             else if (Type == ')')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Cross.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Cross.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '<')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Web_left.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Web_left.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '>')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Web_right.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Web_right.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '|')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Web_center.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Web_center.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '⎕')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("\\\\Mac\\Home\\Desktop\\HallowBlade\\Timer and Keyboard MOO ICT\\Data\\Texture\\Stone_with_a_note.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Stone_with_a_note.png", UriKind.RelativeOrAbsolute)));
             else if (char.IsLetter(Type))
             {
                 isDungeon = true;

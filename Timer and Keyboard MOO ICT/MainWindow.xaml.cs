@@ -190,6 +190,13 @@ namespace ZeldaWPF
                         }
                     }
                 }
+                if (key == Key.Y)
+                {
+                    gameTimer.Stop();
+                    myCanvas.Visibility = Visibility.Collapsed;
+                    RockPaperScissors.Visibility = Visibility.Visible;
+                    RPS.gameTimer.Start();
+                }
             }
         }
 
