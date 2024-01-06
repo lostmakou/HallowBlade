@@ -16,7 +16,17 @@ namespace ZeldaWPF
         public List<string> Layout { get; set; }
         public Position Position { get; set; }
         public List<Enemy> Enemies { get; set; }
+        public List<ItemS> Item {  get; set; }
+
     }
+
+    public class ItemS 
+    {
+        public string Name { get; set; }
+        public Position ScreenPosition { get; set; }
+        public Position Position { get; set; }
+    }
+
 
     public class Position
     {
