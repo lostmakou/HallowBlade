@@ -24,7 +24,8 @@ namespace ZeldaWPF {
         MapRender mr;
         //private List<TextBlock> InfoText = new List<TextBlock>();
         private Direction Direction { get; set; } = Direction.Down;
-        public bool isMatchedSword = true;
+        public bool isMatchedSword = false;
+        public bool isMatchedKey = false;
         public int Health;
         public (int, int) Area;
         public (int, int) DungeonArea;
@@ -60,7 +61,7 @@ namespace ZeldaWPF {
             rect.Fill = imageBrush;
 
             PlayerSpeed = 5;
-            Health = 10;
+            Health = 3;
             Area = (0, 0);
             InDungeon = false;
             Invincibility = 0;
@@ -277,14 +278,6 @@ namespace ZeldaWPF {
                             Dungeon = '_';
                             InDungeon = false;
                             // Телепорт в предыдущее место
-                            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
-                            {
-                                TileMode = TileMode.Tile,
-                                Viewport = new Rect(0, 0, 50, 50),
-                                ViewportUnits = BrushMappingMode.Absolute,
-                                //Viewbox = new Rect(0, 0, 10, 10)
-                            };
-                            myCanvas.Background = imageBrush;
                             mr.Render(Area);
                             BringToFront();
                             OuterScreen.Text = $"Экран: {Area.Item1} - {Area.Item2}";
@@ -295,12 +288,20 @@ namespace ZeldaWPF {
                             Dungeon = block.Type;
                             InDungeon = true;
                             // телепорт в центр экрана
-                            myCanvas.Background = Brushes.DimGray;
+                            imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Stone_floor.png", UriKind.RelativeOrAbsolute)))
+                            {
+                                TileMode = TileMode.Tile,
+                                Viewport = new Rect(0, 0, 50, 50),
+                                ViewportUnits = BrushMappingMode.Absolute,
+                                //Viewbox = new Rect(0, 0, 10, 10)
+                            };
+                            myCanvas.Background = imageBrush;
                             mr.RenderDungeon(DungeonArea, Dungeon);
                             BringToFront();
                             break;
                         }
                     }
+                    
                     //else if (block.Type == '⎕') 
                     //{
                     //    TextBlock areaText = new TextBlock();
@@ -317,6 +318,19 @@ namespace ZeldaWPF {
 
                 }
             }
+        }
+
+        public bool DistanceToBlock(Block block)
+        {
+            double dx = Canvas.GetLeft(rect) - Canvas.GetLeft(block.BlockRect);
+            double dy = Canvas.GetTop(rect) - Canvas.GetTop(block.BlockRect);
+            double dist = Math.Sqrt(dx * dx + dy * dy);
+            if (dist < 50)
+            {
+                return true;
+            }
+            return false;
+
         }
 
         public (int, int) PlayerPosition()

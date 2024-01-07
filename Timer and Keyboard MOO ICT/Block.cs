@@ -15,7 +15,7 @@ namespace ZeldaWPF
         public char Type { get; set; }
         public bool isDungeon;
         public int Id;
-        public Block(char type, int x, int y)
+        public Block(char type)
         {
             BlockRect = new Rectangle();
             BlockRect.Width = 50;
@@ -51,10 +51,17 @@ namespace ZeldaWPF
                 imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Web_center.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '⎕')
                 imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Stone_with_a_note.png", UriKind.RelativeOrAbsolute)));
+            else if (Type == '↑')
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/blade.png", UriKind.RelativeOrAbsolute)));
+            else if (Type == '♥')
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/Heal.png", UriKind.RelativeOrAbsolute)));
+            else if (Type == '→')
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/Key.png", UriKind.RelativeOrAbsolute)));
             else if (char.IsLetter(Type))
             {
                 isDungeon = true;
-                BlockRect.Fill = Brushes.Gold;
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/Ladder.png", UriKind.RelativeOrAbsolute)));
+                //BlockRect.Fill = Brushes.Gold;
             }
             BlockRect.Fill = imageBrush;
         }

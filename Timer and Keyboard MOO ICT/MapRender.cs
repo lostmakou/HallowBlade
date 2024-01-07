@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.Json;
+using System.Windows;
 
 namespace ZeldaWPF
 {
@@ -21,9 +22,15 @@ namespace ZeldaWPF
         public List<IEnemy> enemies;
         public List<IEnemy> tempEnemies;
         public string[] notes = new string[20];
+        ImageBrush imageBrush;
         ScreensData screens;
         DungeonData dungeons;
         NotesData notesData;
+
+        (int, int)[] snowBiome = { (-2, -1), (-2, 0)};
+        (int, int)[] desertBiome = { (-1, 3), (-2, 3) };
+        //ItemsData itemsData;
+
         public MapRender(Canvas myCanvas) 
         {
             this.myCanvas = myCanvas; 
@@ -36,6 +43,8 @@ namespace ZeldaWPF
             dungeons = JsonSerializer.Deserialize<DungeonData>(jsonString);
             jsonString = File.ReadAllText("../../Data\\Map\\note.json");
             notesData = JsonSerializer.Deserialize<NotesData>(jsonString);
+            //jsonString = File.ReadAllText("../../Data/Map/items.json");
+            //itemsData = JsonSerializer.Deserialize<ItemsData>(jsonString);
         }
         public void Render((int, int) area) 
         {
@@ -46,8 +55,34 @@ namespace ZeldaWPF
                 if (s.Position.X == area.Item1 &&  s.Position.Y == area.Item2)
                 {
                     DrawBlocks(s.Layout);
+                    if (snowBiome.Contains((s.Position.X, s.Position.Y)))
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Snow.png", UriKind.RelativeOrAbsolute)))
+                        {
+                            TileMode = TileMode.Tile,
+                            Viewport = new Rect(0, 0, 50, 50),
+                            ViewportUnits = BrushMappingMode.Absolute,
+                            //Viewbox = new Rect(0, 0, 10, 10)
+                        };
+                    else if (desertBiome.Contains((s.Position.X, s.Position.Y)))
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Sand.png", UriKind.RelativeOrAbsolute)))
+                        {
+                            TileMode = TileMode.Tile,
+                            Viewport = new Rect(0, 0, 50, 50),
+                            ViewportUnits = BrushMappingMode.Absolute,
+                            //Viewbox = new Rect(0, 0, 10, 10)
+                        };
+                    else
+                        imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Grass.png", UriKind.RelativeOrAbsolute)))
+                        {
+                            TileMode = TileMode.Tile,
+                            Viewport = new Rect(0, 0, 50, 50),
+                            ViewportUnits = BrushMappingMode.Absolute,
+                            //Viewbox = new Rect(0, 0, 10, 10)
+                        };
+                    myCanvas.Background = imageBrush;
                     DrawEnemies(s.Enemies);
-                    DrawNotes(area);
+                    DrawNotes(area, false);
+                    //DrawItems(area, false);
                     break;
                 }
             }
@@ -67,6 +102,8 @@ namespace ZeldaWPF
                         {
                             DrawBlocks(s.Layout);
                             DrawEnemies(s.Enemies);
+                            DrawNotes(dungeonArea, true);
+                            //DrawItems(dungeonArea, true);
                             break;
                         }
                     }
@@ -93,7 +130,7 @@ namespace ZeldaWPF
                 {
                     if (col != '.' && col != '\n')
                     {
-                        var bl = new Block(col, x, y);
+                        var bl = new Block(col);
                         this.myCanvas.Children.Add(bl.BlockRect);
                         Canvas.SetTop(bl.BlockRect, y);
                         Canvas.SetLeft(bl.BlockRect, x);
@@ -125,16 +162,16 @@ namespace ZeldaWPF
             }
         }
 
-        private void DrawNotes((int, int) area)
+        private void DrawNotes((int, int) area, bool InDungeon)
         {
             foreach (Note note in notesData.Notes)
             {
-                if (note.ScreenPosition.X == area.Item1 && note.ScreenPosition.Y == area.Item2)//&& notes[note.Id] != null)
+                if (note.ScreenPosition.X == area.Item1 && note.ScreenPosition.Y == area.Item2 && note.InDungeon == InDungeon)//&& notes[note.Id] != null)
                 {
-                    var bl = new Block('⎕', note.Position.X * 50, note.Position.Y * 50);
+                    var bl = new Block('⎕');
                     bl.Id = note.Id;
                     myCanvas.Children.Add(bl.BlockRect);
-                    Canvas.SetTop(bl.BlockRect, note.Position.Y * 50);
+                    Canvas.SetTop(bl.BlockRect, 100 + note.Position.Y * 50);
                     Canvas.SetLeft(bl.BlockRect, note.Position.X * 50);
                     blocks.Add(bl);
 
@@ -143,9 +180,19 @@ namespace ZeldaWPF
             }
         }
 
-        private void DrawItems()
+        /*private void DrawItems((int, int) area, bool InDungeon)
         {
-
-        }
+            foreach(ItemS item in itemsData.Items)
+            {
+                if (item.ScreenPosition.X == area.Item1 && item.ScreenPosition.Y == area.Item2 &&  item.InDungeon == InDungeon)
+                {
+                    var bl = new Block('↑');
+                    myCanvas.Children.Add(bl.BlockRect);
+                    Canvas.SetTop(bl.BlockRect, 100 + item.Position.Y * 50);
+                    Canvas.SetLeft(bl.BlockRect, item.Position.X * 50);
+                    blocks.Add(bl);
+                }
+            }
+        }*/
     }
 }

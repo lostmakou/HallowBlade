@@ -130,6 +130,7 @@
     <Resource Include="Data\Font\EpilepsySans.ttf" />
     <Resource Include="Data\Font\EpilepsySansBold.ttf" />
     <None Include="Data\Map\dungeon.json" />
+    <None Include="Data\Map\items.json" />
     <None Include="Data\Map\note.json" />
     <None Include="Data\Map\outer.json" />
     <None Include="Data\Map\test.json" />
@@ -169,6 +170,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Music\outer_music.mp3" />
+    <Resource Include="Data\Texture\Stone_floor.png" />
+    <Resource Include="Data\Texture\Sand.png" />
+    <Resource Include="Data\Texture\Snow.png" />
+    <Resource Include="Data\Texture\zombie_back1.png" />
+    <Resource Include="Data\Texture\zombie_side_right.png" />
+    <Resource Include="Data\Texture\zombie_side_left.png" />
+    <Resource Include="Data\Texture\Ladder.png" />
+    <Resource Include="Data\Texture\Frame_up.png" />
+    <Resource Include="Data\Texture\Key.png" />
+    <Resource Include="Data\Texture\Heal.png" />
     <Resource Include="Data\Texture\Gallows.png" />
     <Resource Include="Data\Texture\blade.png" />
     <Resource Include="Data\Texture\mchar_ver1_animation_noweapon_front-export.gif" />

@@ -10,7 +10,8 @@
         "X": 0,
         "Y": 0
       },
-      "Id": 1
+      "Id": 1,
+      "InDungeon": false
     }
   ]
 }

@@ -86,6 +86,7 @@ namespace ZeldaWPF
         int Steps = 5;
         Direction Direction = Direction.Left;
         List<Block> blocks;
+        ImageBrush imageBrush;
 
         public Zombie(int x, int y, Canvas canvas, List<Block> blocks)
         {
@@ -97,7 +98,7 @@ namespace ZeldaWPF
             EnemyRectangle = new Rectangle();
             EnemyRectangle.Height = 50;
             EnemyRectangle.Width = 50;
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\zombie_front1.png", UriKind.RelativeOrAbsolute)));
+            imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\zombie_front1.png", UriKind.RelativeOrAbsolute)));
             EnemyRectangle.Fill = imageBrush;
             this.canvas = canvas;
             canvas.Children.Add(EnemyRectangle);
@@ -111,6 +112,7 @@ namespace ZeldaWPF
             {
                 if (Direction == Direction.Up)
                 {
+
                     Canvas.SetTop(EnemyRectangle, Canvas.GetTop(EnemyRectangle) - Speed);
                     CollideWithBlocks(0, -1, blocks);
                 }
@@ -138,6 +140,15 @@ namespace ZeldaWPF
                 Array values = type.GetEnumValues();
                 int index = random.Next(values.Length);
                 Direction = (Direction)values.GetValue(index);
+                if (Direction == Direction.Up)
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\zombie_back1.png", UriKind.RelativeOrAbsolute)));
+                else if (Direction == Direction.Down)
+                    imageBrush =  new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\zombie_front1.png", UriKind.RelativeOrAbsolute)));
+                else if (Direction == Direction.Left)
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\zombie_side_left.png", UriKind.RelativeOrAbsolute)));
+                else if (Direction == Direction.Right)
+                    imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\zombie_side_right.png", UriKind.RelativeOrAbsolute)));
+                EnemyRectangle.Fill = imageBrush;
                 Steps = random.Next(5, 100);
             }
         }
