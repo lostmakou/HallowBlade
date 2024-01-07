@@ -39,6 +39,7 @@ namespace ZeldaWPF
         public MainWindow()
         {
             InitializeComponent();
+            this.ResizeMode = ResizeMode.NoResize;
             mr = new MapRender(myCanvas);
             Player = new Player(myCanvas, mr);
             
