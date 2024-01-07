@@ -27,11 +27,12 @@ namespace ZeldaWPF
         Player Player;
         MapRender mr;
         HashSet<Key> keys = new HashSet<Key>();
+        Random random = new Random();
         Sword sword;
 
         public DispatcherTimer gameTimer = new DispatcherTimer();
 
-        private CanvasHandlerClass RPS;
+        private CanvasHandlerRockPaperScissors RPS;
 
         public MainWindow()
         {
@@ -49,7 +50,7 @@ namespace ZeldaWPF
             KeyUp += MainWindow_KeyUp;
 
 
-            RPS = new CanvasHandlerClass(RockPaperScissors, myCanvas, gameTimer);
+            RPS = new CanvasHandlerRockPaperScissors(RockPaperScissors, myCanvas, gameTimer);
 
         }
 
@@ -76,6 +77,14 @@ namespace ZeldaWPF
                             //Console.WriteLine(enemy.Health.ToString());
                             if (enemy.Health <= 0)
                             {
+                                if (random.Next(0, 1) == 0)
+                                {
+                                    var bl = new Block('♥');
+                                    myCanvas.Children.Add(bl.BlockRect);
+                                    Canvas.SetLeft(bl.BlockRect, Canvas.GetLeft(enemy.EnemyRectangle));
+                                    Canvas.SetTop(bl.BlockRect, Canvas.GetTop(enemy.EnemyRectangle));
+                                    mr.blocks.Add(bl);
+                                }
                                 myCanvas.Children.Remove(enemy.EnemyRectangle);
                                 mr.enemies.Remove(enemy);
                                 break;
@@ -115,6 +124,11 @@ namespace ZeldaWPF
                         else
                         {
                             enemy.Health = 0;
+                            var bl = new Block('→');
+                            myCanvas.Children.Add(bl.BlockRect);
+                            Canvas.SetLeft(bl.BlockRect, Canvas.GetLeft(enemy.EnemyRectangle));
+                            Canvas.SetTop(bl.BlockRect, Canvas.GetTop(enemy.EnemyRectangle));
+                            mr.blocks.Add(bl);
                         }
                     }
                 }
@@ -123,15 +137,13 @@ namespace ZeldaWPF
             if (Player.Health <= 0)
             {
                 gameTimer.Stop();
-                myCanvas.Children.Clear();
+                //myCanvas.Children.Clear();
                 Player = new Player(myCanvas, mr);
                 myCanvas.Visibility = Visibility.Collapsed;
                 MainMenu.Visibility = Visibility.Visible;
                 
             }
-
-
-            
+ 
         }
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
@@ -176,16 +188,44 @@ namespace ZeldaWPF
                     {
                         if (block.Type == '⎕')
                         {
-                            double dx = Canvas.GetLeft(Player.rect) - Canvas.GetLeft(block.BlockRect);
-                            double dy = Canvas.GetTop(Player.rect) - Canvas.GetTop(block.BlockRect);
-                            double dist = Math.Sqrt(dx * dx + dy * dy);
-                            if (dist < 50)
+                            if (Player.DistanceToBlock(block))
                             {
                                 MessageText.Text = mr.notes[block.Id];
                                 myCanvas.Visibility = Visibility.Collapsed;
                                 gameTimer.Stop();
                                 Message.Visibility = Visibility.Visible;
-                                
+
+                            }
+                        }
+                        else if (block.Type == '♥')
+                        {
+                            if (Player.DistanceToBlock(block))
+                            {
+                                mr.blocks.Remove(block);
+                                myCanvas.Children.Remove(block.BlockRect);
+                                Player.Health += 1;
+                                Health.Text = $"Здоровье: {Player.Health}";
+                                break;
+                            }
+                        }
+                        else if (block.Type == '↑')
+                        {
+                            if (Player.DistanceToBlock(block))
+                            {
+                                mr.blocks.Remove(block);
+                                myCanvas.Children.Remove(block.BlockRect);
+                                Player.isMatchedSword = true;
+                                break;
+                            }
+                        }
+                        else if (block.Type == '→')
+                        {
+                            if (Player.DistanceToBlock(block))
+                            {
+                                mr.blocks.Remove(block);
+                                myCanvas.Children.Remove(block.BlockRect);
+                                Player.isMatchedKey = true;
+                                break;
                             }
                         }
                     }

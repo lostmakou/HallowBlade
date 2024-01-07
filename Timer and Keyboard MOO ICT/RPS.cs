@@ -20,7 +20,7 @@ namespace RPS
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class CanvasHandlerClass
+    public partial class CanvasHandlerRockPaperScissors
     {
         public bool isWin { get; set; } = false;
         int rounds = 3;
@@ -41,7 +41,7 @@ namespace RPS
         Rectangle picPlayer, picCPU;
         TextBlock txtMessage, roundsText, txtTime;
 
-        public CanvasHandlerClass(Canvas canvas, Canvas mainCanvas, DispatcherTimer mainTimer)
+        public CanvasHandlerRockPaperScissors(Canvas canvas, Canvas mainCanvas, DispatcherTimer mainTimer)
         {
             this.canvas = canvas;
             this.mainCanvas = mainCanvas;

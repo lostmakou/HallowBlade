@@ -16,16 +16,13 @@ namespace ZeldaWPF
         public List<string> Layout { get; set; }
         public Position Position { get; set; }
         public List<Enemy> Enemies { get; set; }
-        public List<ItemS> Item {  get; set; }
+        //public List<ItemS> Item {  get; set; }
 
     }
 
-    public class ItemS 
-    {
-        public string Name { get; set; }
-        public Position ScreenPosition { get; set; }
-        public Position Position { get; set; }
-    }
+    
+
+    
 
 
     public class Position
@@ -62,5 +59,18 @@ namespace ZeldaWPF
         public Position ScreenPosition { get; set; }
         public Position Position { get; set; }
         public int Id { get; set; }
+        public bool InDungeon { get; set; }
+    }
+
+    public class ItemsData
+    {
+        public List<ItemS> Items { get; set; } 
+    }
+    public class ItemS
+    {
+        public string Name { get; set; }
+        public Position ScreenPosition { get; set; }
+        public Position Position { get; set; }
+        public bool InDungeon { get; set; }
     }
 }
