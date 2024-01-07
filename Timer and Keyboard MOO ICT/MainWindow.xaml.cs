@@ -1,4 +1,5 @@
-﻿using RPS;
+﻿using Mini_games1;
+using RPS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,7 @@ namespace ZeldaWPF
         public DispatcherTimer gameTimer = new DispatcherTimer();
 
         private CanvasHandlerRockPaperScissors RPS;
+        private CanvasHandlerTag TAG;
 
         public MainWindow()
         {
@@ -51,7 +53,7 @@ namespace ZeldaWPF
 
 
             RPS = new CanvasHandlerRockPaperScissors(RockPaperScissors, myCanvas, gameTimer);
-
+            TAG = new CanvasHandlerTag(Tag, myCanvas, gameTimer);
         }
 
         
@@ -228,6 +230,23 @@ namespace ZeldaWPF
                                 break;
                             }
                         }
+                        else if (block.Type == '☷' && Player.isMatchedKey)
+                        {
+                            if (Player.DistanceToBlock(block))
+                            {
+                                gameTimer.Stop();
+                                myCanvas.Visibility = Visibility.Collapsed;
+                                Tag.Visibility = Visibility.Visible;
+                                Tag.Focus();
+                                TAG.StartGame();
+                                    //gameTimer.Start();
+                                myCanvas.Focus();
+                                mr.blocks.Remove(block);
+                                myCanvas.Children.Remove(block.BlockRect);
+
+                                break;
+                            }
+                        }
                     }
                 }
                 if (key == Key.Y)
@@ -236,6 +255,13 @@ namespace ZeldaWPF
                     myCanvas.Visibility = Visibility.Collapsed;
                     RockPaperScissors.Visibility = Visibility.Visible;
                     RPS.gameTimer.Start();
+                }
+                if (key == Key.U)
+                {
+                    gameTimer.Stop();
+                    myCanvas.Visibility = Visibility.Collapsed;
+                    Tag.Visibility = Visibility.Visible;
+
                 }
             }
         }

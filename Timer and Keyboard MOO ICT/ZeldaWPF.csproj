@@ -90,6 +90,8 @@
     <Compile Include="Item.cs" />
     <Compile Include="RPS.cs" />
     <Compile Include="Sword.cs" />
+    <Compile Include="Tag.cs" />
+    <Compile Include="TagLogic.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,6 +172,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Music\outer_music.mp3" />
+    <Resource Include="Data\Texture\start_game1.png" />
+    <Resource Include="Data\Texture\sandstone_ver3.png" />
+    <Resource Include="Data\Texture\sandstone_ver2.png" />
+    <Resource Include="Data\Texture\Pumpkin.png" />
+    <Resource Include="Data\Texture\Ice_block_ver1.png" />
+    <Resource Include="Data\Texture\sandstone.png" />
+    <Resource Include="Data\Texture\tag\1.jpg" />
+    <Resource Include="Data\Texture\tag\2.jpg" />
+    <Resource Include="Data\Texture\tag\3.jpg" />
+    <Resource Include="Data\Texture\tag\4.jpg" />
+    <Resource Include="Data\Texture\tag\5.jpg" />
+    <Resource Include="Data\Texture\tag\6.jpg" />
+    <Resource Include="Data\Texture\tag\7.jpg" />
+    <Resource Include="Data\Texture\tag\8.jpg" />
+    <Resource Include="Data\Texture\tag\9.jpg" />
+    <Resource Include="Data\Texture\tag\game_1.png" />
+    <Resource Include="Data\Texture\tag\game_2_background_ver2 %281%29.png" />
     <Resource Include="Data\Texture\Stone_floor.png" />
     <Resource Include="Data\Texture\Sand.png" />
     <Resource Include="Data\Texture\Snow.png" />

@@ -27,6 +27,7 @@ namespace ZeldaWPF {
         public bool isMatchedSword = false;
         public bool isMatchedKey = false;
         public int Health;
+        public (int, int) PreDungeonCoord;
         public (int, int) Area;
         public (int, int) DungeonArea;
         public bool InDungeon;
@@ -278,6 +279,9 @@ namespace ZeldaWPF {
                             Dungeon = '_';
                             InDungeon = false;
                             // Телепорт в предыдущее место
+                            Canvas.SetTop(rect, PreDungeonCoord.Item2);
+                            Canvas.SetLeft(rect, PreDungeonCoord.Item1);
+
                             mr.Render(Area);
                             BringToFront();
                             OuterScreen.Text = $"Экран: {Area.Item1} - {Area.Item2}";
@@ -288,6 +292,10 @@ namespace ZeldaWPF {
                             Dungeon = block.Type;
                             InDungeon = true;
                             // телепорт в центр экрана
+                            PreDungeonCoord = ((int)Canvas.GetLeft(rect), (int)Canvas.GetTop(rect));
+                            Canvas.SetTop(rect, 450);
+                            Canvas.SetLeft(rect, 400);
+
                             imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Stone_floor.png", UriKind.RelativeOrAbsolute)))
                             {
                                 TileMode = TileMode.Tile,
@@ -301,20 +309,7 @@ namespace ZeldaWPF {
                             break;
                         }
                     }
-                    
-                    //else if (block.Type == '⎕') 
-                    //{
-                    //    TextBlock areaText = new TextBlock();
-                    //    areaText.Text = $"{mr.notes[block.Id]}";
-                    //    areaText.FontSize = 20;
-                    //    areaText.Foreground = Brushes.White;
-                    //    myCanvas.Children.Add(areaText);
-                    //    Canvas.SetLeft(areaText, 200);
-                    //    Canvas.SetTop(areaText, 20);
-                    //    myCanvas.Children.Remove(block.BlockRect);
-                    //    mr.blocks.Remove(block);
-                    //    break;
-                    //}
+                   
 
                 }
             }
@@ -325,7 +320,7 @@ namespace ZeldaWPF {
             double dx = Canvas.GetLeft(rect) - Canvas.GetLeft(block.BlockRect);
             double dy = Canvas.GetTop(rect) - Canvas.GetTop(block.BlockRect);
             double dist = Math.Sqrt(dx * dx + dy * dy);
-            if (dist < 50)
+            if (dist < 60)
             {
                 return true;
             }
@@ -343,41 +338,5 @@ namespace ZeldaWPF {
             myCanvas.Children.Remove(rect);
             myCanvas.Children.Add(rect);
         }
-
-    //    public void PrintInfo()
-    //    {
-    //        foreach (TextBlock textBlock in InfoText)
-    //        {
-    //            myCanvas.Children.Remove(textBlock);
-    //        }
-    //        InfoText.Clear();
-
-    //        TextBlock areaText = new TextBlock();
-    //        areaText.Text = $"Экран: {Area.Item1} - {Area.Item2}";
-    //        areaText.FontSize = 20;
-    //        areaText.Foreground = Brushes.White;
-    //        myCanvas.Children.Add(areaText);
-    //        Canvas.SetLeft(areaText, 30);
-    //        Canvas.SetTop(areaText, 20);
-    //        InfoText.Add(areaText);
-
-    //        TextBlock healthText = new TextBlock();
-    //        healthText.Text = $"Здоровье: {Health}";
-    //        healthText.FontSize = 20;
-    //        healthText.Foreground = Brushes.White;
-    //        myCanvas.Children.Add(healthText);
-    //        Canvas.SetLeft(healthText, 30);
-    //        Canvas.SetTop(healthText, 50);
-    //        InfoText.Add(healthText);
-
-    //        TextBlock dungeonText = new TextBlock();
-    //        dungeonText.Text = $"Экран данжа: {DungeonArea.Item1} - {DungeonArea.Item2}";
-    //        dungeonText.FontSize = 20;
-    //        dungeonText.Foreground = Brushes.White;
-    //        myCanvas.Children.Add(dungeonText);
-    //        Canvas.SetLeft(dungeonText, 200);
-    //        Canvas.SetTop(dungeonText, 50);
-    //        InfoText.Add(dungeonText);
-    //    }
     }
 }

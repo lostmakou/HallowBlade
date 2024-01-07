@@ -110,6 +110,43 @@
             <TextBlock FontSize="35" Canvas.Left="632" Canvas.Top="127" HorizontalAlignment="Left" VerticalAlignment="Top" Text="Босс"/>
             <TextBlock x:Name="txtTime" FontSize="50" Canvas.Left="396" Canvas.Top="282" HorizontalAlignment="Center" VerticalAlignment="Top" Text="5" Height="64" Width="28"/>
         </Canvas>
+
+        <Canvas x:Name="Tag" Grid.RowSpan="2" Visibility="Collapsed">
+            <Canvas.Background>
+                <ImageBrush ImageSource="Data/Texture/Tag/game_2_background_ver2 (1).png"/>
+            </Canvas.Background>
+            <Rectangle Width="360" Height="360" Canvas.Left="418" Canvas.Top="64" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Data/Texture/Tag/game_1.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Button Tag ="0" Grid.Row ="0" Grid.Column ="0" Name="B0" Height="116" Width="116" Canvas.Left="43" Canvas.Top="64" HorizontalAlignment="Left" VerticalAlignment="Center">
+            </Button>
+            <Button Tag ="1" Grid.Row ="0" Grid.Column ="1" Name="B1" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="166" VerticalAlignment="Center" Canvas.Top="64">
+
+            </Button>
+            <Button Tag ="2" Grid.Row ="0" Grid.Column ="2" Name="B2" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="287" VerticalAlignment="Center" Canvas.Top="64">
+
+            </Button>
+            <Button Tag ="3" Grid.Row ="1" Grid.Column ="0" Name="B3" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="43" VerticalAlignment="Center" Canvas.Top="186">
+
+            </Button>
+            <Button Tag ="4" Grid.Row ="1" Grid.Column ="1" Name="B4" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="166" VerticalAlignment="Center" Canvas.Top="186">
+
+            </Button>
+            <Button Tag ="5" Grid.Row ="1" Grid.Column ="2" Name="B5" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="287" VerticalAlignment="Center" Canvas.Top="186">
+
+            </Button>
+            <Button Tag ="6" Grid.Row ="2" Grid.Column ="0" Name="B6" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="43" VerticalAlignment="Center" Canvas.Top="308">
+
+            </Button>
+            <Button Tag ="7" Grid.Row ="2" Grid.Column ="1" Name="B7" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="166" VerticalAlignment="Center" Canvas.Top="308">
+
+            </Button>
+            <Button Tag ="8" Grid.Row ="2" Grid.Column ="2" Name="B8" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="287" VerticalAlignment="Center" Canvas.Top="308">
+
+            </Button>
+        </Canvas>
     </Grid>
 
 </Window>

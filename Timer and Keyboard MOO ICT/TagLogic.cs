@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace Mini_games1
 {
-    internal class Game
+    internal class Tag
     {
         int[,] Field = new int[0, 0];
         int Size;
@@ -18,7 +18,7 @@ namespace Mini_games1
         static Random s_move = new Random();
         Canvas canvas;
 
-        public Game(Canvas canvas) { this.canvas = canvas; }
+        public Tag(Canvas canvas) { this.canvas = canvas; }
 
         //Размер массива
         public void Array(int Size)
@@ -35,7 +35,7 @@ namespace Mini_games1
                 {
                     Field[x, y] = Coord_to_pos(x, y) + 1;
                     var btn = canvas.FindName(Button(Coord_to_pos(x, y))) as Button;
-                    ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../" + (Coord_to_pos(x, y) + 1).ToString() + ".jpg", UriKind.RelativeOrAbsolute)));
+                    ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data/Texture/Tag/" + (Coord_to_pos(x, y) + 1).ToString() + ".jpg", UriKind.RelativeOrAbsolute)));
                     btn.Background = imageBrush;
                 }
             x0 = Size - 1;
@@ -53,7 +53,7 @@ namespace Mini_games1
                 return;
             Field[x0, y0] = Field[x, y];
             var btn = canvas.FindName(Button(Coord_to_pos(x0, y0))) as Button;
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../" + (Field[x, y]).ToString() + ".jpg", UriKind.RelativeOrAbsolute)));
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data/Texture/Tag/" + (Field[x, y]).ToString() + ".jpg", UriKind.RelativeOrAbsolute)));
             btn.Background = imageBrush;
             Field[x, y] = 0;
             x0 = x; y0 = y;
