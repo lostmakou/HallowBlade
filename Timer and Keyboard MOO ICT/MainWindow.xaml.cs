@@ -88,6 +88,8 @@ namespace ZeldaWPF
                                     Canvas.SetTop(bl.BlockRect, Canvas.GetTop(enemy.EnemyRectangle));
                                     mr.blocks.Add(bl);
                                 }
+                                Player.Score += enemy.Score;
+                                Score.Text = $"Счет: {Player.Score}";
                                 myCanvas.Children.Remove(enemy.EnemyRectangle);
                                 mr.enemies.Remove(enemy);
                                 break;
@@ -140,7 +142,8 @@ namespace ZeldaWPF
             if (Player.Health <= 0)
             {
                 gameTimer.Stop();
-                //myCanvas.Children.Clear();
+                mr.RemoveObjects();
+                myCanvas.Children.Remove(Player.rect);
                 Player = new Player(myCanvas, mr);
                 myCanvas.Visibility = Visibility.Collapsed;
                 MainMenu.Visibility = Visibility.Visible;

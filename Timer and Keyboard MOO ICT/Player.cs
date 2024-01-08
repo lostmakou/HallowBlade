@@ -25,8 +25,9 @@ namespace ZeldaWPF {
         //private List<TextBlock> InfoText = new List<TextBlock>();
         private Direction Direction { get; set; } = Direction.Down;
         public bool isMatchedSword = false;
-        public bool isMatchedKey = false;
+        public bool isMatchedKey = true;
         public int Health;
+        public int Score {  get; set; }
         public (int, int) PreDungeonCoord;
         public (int, int) Area;
         public (int, int) DungeonArea;
@@ -63,7 +64,8 @@ namespace ZeldaWPF {
 
             PlayerSpeed = 5;
             Health = 3;
-            Area = (0, 0);
+            Score = 0;
+            Area = (-2, 0);
             InDungeon = false;
             Invincibility = 0;
             this.mr = mr;

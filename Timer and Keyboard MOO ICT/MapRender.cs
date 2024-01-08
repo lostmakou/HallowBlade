@@ -81,7 +81,7 @@ namespace ZeldaWPF
                         };
                     myCanvas.Background = imageBrush;
                     DrawEnemies(s.Enemies);
-                    DrawNotes(area, false);
+                    DrawNotes(area, "_");
                     //DrawItems(area, false);
                     break;
                 }
@@ -102,7 +102,7 @@ namespace ZeldaWPF
                         {
                             DrawBlocks(s.Layout);
                             DrawEnemies(s.Enemies);
-                            DrawNotes(dungeonArea, true);
+                            DrawNotes(dungeonArea, Dungeon.ToString());
                             //DrawItems(dungeonArea, true);
                             break;
                         }
@@ -111,7 +111,7 @@ namespace ZeldaWPF
             }
         }
 
-        private void RemoveObjects()
+        public void RemoveObjects()
         {
             foreach (Block bl in blocks)
                 myCanvas.Children.Remove(bl.BlockRect);
@@ -162,11 +162,11 @@ namespace ZeldaWPF
             }
         }
 
-        private void DrawNotes((int, int) area, bool InDungeon)
+        private void DrawNotes((int, int) area, string InDungeon)
         {
             foreach (Note note in notesData.Notes)
             {
-                if (note.ScreenPosition.X == area.Item1 && note.ScreenPosition.Y == area.Item2 && note.InDungeon == InDungeon)//&& notes[note.Id] != null)
+                if (note.ScreenPosition.X == area.Item1 && note.ScreenPosition.Y == area.Item2 && note.Dungeon == InDungeon)//&& notes[note.Id] != null)
                 {
                     var bl = new Block('⎕');
                     bl.Id = note.Id;

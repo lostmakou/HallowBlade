@@ -59,7 +59,7 @@ namespace ZeldaWPF
         public Position ScreenPosition { get; set; }
         public Position Position { get; set; }
         public int Id { get; set; }
-        public bool InDungeon { get; set; }
+        public string Dungeon { get; set; }
     }
 
     public class ItemsData
@@ -71,6 +71,6 @@ namespace ZeldaWPF
         public string Name { get; set; }
         public Position ScreenPosition { get; set; }
         public Position Position { get; set; }
-        public bool InDungeon { get; set; }
+        public string InDungeon { get; set; }
     }
 }

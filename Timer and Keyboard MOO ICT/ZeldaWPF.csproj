@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Music\outer_music.mp3" />
+    <Resource Include="Data\Texture\Hangman.png" />
     <Resource Include="Data\Texture\start_game1.png" />
     <Resource Include="Data\Texture\sandstone_ver3.png" />
     <Resource Include="Data\Texture\sandstone_ver2.png" />

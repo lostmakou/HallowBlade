@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZeldaWPF"
         mc:Ignorable="d"
-        Title="ZelfdaWF" Height="640" Width="820"
+        Title="HallowBlade" Height="640" Width="820"
         WindowStartupLocation="CenterScreen">
-    
+    <Window.Icon>
+        <BitmapImage UriSource="/Data/Texture/Pumpkin.png"/>
+
+    </Window.Icon>
     <Grid>
         <Canvas Name="MainMenu" Background="Black" Focusable="True" Visibility="Visible">
             <Image Source="Data\Texture\menu_ver2.png" Stretch="UniformToFill" Height="624" Width="820" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
@@ -47,6 +50,8 @@
             </Rectangle>
             <TextBlock Canvas.Left="30" Canvas.Top="20" FontFamily="{StaticResource EpilepsySans}" x:Name="OuterScreen" FontSize="20" Foreground="White" Text="Экран: 0 - 0"></TextBlock>
             <TextBlock Canvas.Left="30" Canvas.Top="50" FontFamily="{StaticResource EpilepsySans}" x:Name="Health" FontSize="20" Foreground="White" Text="Здоровье: 3"></TextBlock>
+            <TextBlock Canvas.Left="200" Canvas.Top="20" FontFamily="{StaticResource EpilepsySans}" x:Name="Score" FontSize="20" Foreground="White" Text="Счет: 0"></TextBlock>
+
             <!--<TextBlock Canvas.Left="200" Canvas.Top="50" x:Name="DungeonScreen" FontSize="20" Foreground="White" Text="Экран подземелья: "></TextBlock>-->
 
             <!--<Rectangle Name="player" Height="50" Width="50" Canvas.Left="375" Canvas.Top="167" RenderTransformOrigin="0.545,0.545">

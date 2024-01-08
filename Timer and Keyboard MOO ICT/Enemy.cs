@@ -15,6 +15,7 @@ namespace ZeldaWPF
     {
         public Rectangle EnemyRectangle { get; set; }
         public int Health { get; set; }
+        public int Score { get; set; }
         public Position position { get; set; }
         public abstract void Update(Position playerPosition);
         public void CollideWithBlocks(int dx, int dy, List<Block> blocks)
@@ -61,6 +62,7 @@ namespace ZeldaWPF
             this.canvas = canvas;
             canvas.Children.Add(EnemyRectangle);
             Health = 1;
+            Score = 100;
         }
 
         public override void Update(Position playerPosition)
@@ -104,6 +106,7 @@ namespace ZeldaWPF
             canvas.Children.Add(EnemyRectangle);
             this.blocks = blocks;
             Health = 2;
+            Score = 200;
         }
 
         public override void Update(Position playerPosition)
@@ -180,6 +183,7 @@ namespace ZeldaWPF
             canvas.Children.Add(EnemyRectangle);
             this.blocks = blocks;
             Health = 3;
+            Score = 300;
         }
 
         public override void Update(Position playerPosition)
@@ -296,6 +300,7 @@ namespace ZeldaWPF
             this.blocks = blocks;
             this.enemies = enemies;
             Health = 10;
+            Score = 1000;
         }
 
         public override void Update(Position playerPosition)
