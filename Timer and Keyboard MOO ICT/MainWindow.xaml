@@ -18,6 +18,8 @@
 
     </Window.Icon>
     <Grid>
+        <!--<MediaElement x:Name="outer_music" Source="Data\Music\outer_music.mp3" LoadedBehavior="Play"></MediaElement>-->
+        <!-- Главное меню -->
         <Canvas Name="MainMenu" Background="Black" Focusable="True" Visibility="Visible">
             <Image Source="Data\Texture\menu_ver2.png" Stretch="UniformToFill" Height="624" Width="820" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
             <Button Canvas.Left="479" Canvas.Top="444" Click="Button_Click" Height="110" Width="255" HorizontalAlignment="Left" VerticalAlignment="Top" >
@@ -28,6 +30,7 @@
             </Button>
         </Canvas>
 
+        <!-- Сообщения -->
         <Canvas x:Name="Message" Background="Black" Focusable="False" Visibility="Collapsed">
             <Image Source="Data\Texture\game_2_background_ver2.png" Stretch="UniformToFill" Height="600" Width="800" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
 
@@ -39,16 +42,26 @@
                 <TextBlock FontSize="20" Foreground="White" Text="Атака" Margin="157,262,-157,-263"></TextBlock>
                 <TextBlock FontSize="20" Foreground="White" Text="Взаимодействие" Margin="472,213,-472,-214"></TextBlock>
             </Grid>
+            <Grid x:Name="EndScreenPlayer" Visibility="Collapsed">
+                <Image x:Name="AnoherPlayerEndPic" Source="Data\Texture\mchar_ver2_noweapon_front1.png" Width="200" Margin="63,170,227,-169" ></Image>
+                <Image x:Name="PlayerEndPic" Source="Data\Texture\mchar_ver1_noweapon_front1.png" Width="200" Margin="554,170,-264,-169" ></Image>
+                <Button Height="74" Width="146" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="344,485,0,0" Click="Button_Click_2">
+                    <Button.Background>
+                        <ImageBrush ImageSource="Data\Texture\ok_button.png"></ImageBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
             <TextBlock Canvas.Left="50" Canvas.Top="50" x:Name="MessageText" FontSize="20" Foreground="White" Text="Управление"  Width="700" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
-            <Button Height="74" Width="146" Canvas.Left="337" Canvas.Top="518" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1">
+            <Button x:Name="OKMessage" Height="74" Width="146" Canvas.Left="337" Canvas.Top="518" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1" Visibility="Visible">
                 <Button.Background>
                     <ImageBrush ImageSource="Data\Texture\ok_button.png"></ImageBrush>
                 </Button.Background>
             </Button>
         </Canvas>
 
-        <Canvas Name="myCanvas" Background="LightBlue" Focusable="False" Visibility="Visible">
-            <MediaElement x:Name="outer_music" Source="Data\Music\outer_music.mp3" IsMuted="True"></MediaElement>
+        <!-- Основной холст -->
+        <Canvas Name="myCanvas" Background="LightBlue" Focusable="False" Visibility="Collapsed">
+
             <Rectangle Name="black" Height="100" Width="805">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="Data\Texture\Frame_up.png"/>
@@ -68,15 +81,6 @@
                     <ImageBrush ImageSource="Data/Texture/Key.png"></ImageBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <!--<TextBlock Canvas.Left="200" Canvas.Top="50" x:Name="DungeonScreen" FontSize="20" Foreground="White" Text="Экран подземелья: "></TextBlock>-->
-
-            <!--<Rectangle Name="player" Height="50" Width="50" Canvas.Left="375" Canvas.Top="167" RenderTransformOrigin="0.545,0.545">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="\\Mac\Home\Desktop\WPF-Move-Rectangle-In-Canvas-Using-Keyboard-and-Timer-main\Timer and Keyboard MOO ICT\Data\Texture\mchar_ver1_noweapon_front1.png"></ImageBrush>
-            </Rectangle.Fill>
-        </Rectangle>-->
-            <!--<Rectangle Name="box" Height="50" Width="50" Fill="Purple" Canvas.Left="381" Canvas.Top="279" />-->
-
         </Canvas>
 
         <!--Камень, ножницы бумага-->
@@ -132,6 +136,7 @@
             <TextBlock x:Name="txtTime" FontSize="50" Canvas.Left="396" Canvas.Top="282" HorizontalAlignment="Center" VerticalAlignment="Top" Text="5" Height="64" Width="28"/>
         </Canvas>
 
+        <!-- Пятнашки -->
         <Canvas x:Name="Tag" Grid.RowSpan="2" Visibility="Collapsed">
             <Canvas.Background>
                 <ImageBrush ImageSource="Data/Texture/Tag/game_2_background_ver2 (1).png"/>
@@ -167,6 +172,21 @@
             <Button Tag ="8" Grid.Row ="2" Grid.Column ="2" Name="B8" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="287" VerticalAlignment="Center" Canvas.Top="308">
 
             </Button>
+        </Canvas>
+
+        <!-- Конец -->
+        <Canvas x:Name="EndScreen" Background="Black" Visibility="Collapsed">
+            <Rectangle Height="400" Width="820">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/data/texture/end_pic.png"></ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle Height="200" Width="800" HorizontalAlignment="Center" Canvas.Top="400" VerticalAlignment="Top">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Data\Texture\game_2_background_ver2.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <TextBlock x:Name="EndText" FontSize="20" Foreground="White" Canvas.Left="50" Canvas.Top="450" TextWrapping="Wrap" Width="700"> Оказалось это был лишь сон...</TextBlock>
         </Canvas>
     </Grid>
 

@@ -172,6 +172,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Music\outer_music.mp3" />
+    <Resource Include="Data\Texture\mchar_ver2_noweapon_front1.png" />
+    <Resource Include="Data\Texture\Portal.png" />
+    <Resource Include="Data\Texture\end_pic.png" />
+    <Resource Include="Data\Texture\Gallows_miniVer.png" />
+    <Resource Include="Data\Texture\Hangman_miniVer.png" />
     <Resource Include="Data\Texture\Hangman.png" />
     <Resource Include="Data\Texture\start_game1.png" />
     <Resource Include="Data\Texture\sandstone_ver3.png" />

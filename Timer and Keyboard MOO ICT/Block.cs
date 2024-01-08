@@ -66,9 +66,11 @@ namespace ZeldaWPF
             else if (Type == '-')
                 imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/sandstone_ver3.png", UriKind.RelativeOrAbsolute)));
             else if (Type == '1')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/Hangman.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/Hangman_miniVer .png", UriKind.RelativeOrAbsolute)));
             else if (Type == '0')
-                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/Gallows.png", UriKind.RelativeOrAbsolute)));
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/Gallows_miniVer.png", UriKind.RelativeOrAbsolute)));
+            else if (Type == '2')
+                imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/Portal.png", UriKind.RelativeOrAbsolute)));
 
             else if (char.IsLetter(Type))
             {

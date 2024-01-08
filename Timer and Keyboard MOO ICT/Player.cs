@@ -35,6 +35,8 @@ namespace ZeldaWPF {
         private (int, int) newArea;
         private bool isMatchedSword, isMatchedKey;
 
+        public bool IsBoySaved { get; set; } = false;
+
         public bool IsMatchedSword
         {
             get { return isMatchedSword; }
@@ -125,7 +127,7 @@ namespace ZeldaWPF {
 
         public bool InDungeon;
         public char Dungeon;
-        public int Money;
+        //public int Money;
         public int Invincibility { get; set; }
         ImageBrush imageBrush;
 
@@ -414,10 +416,10 @@ namespace ZeldaWPF {
 
         }
 
-        public (int, int) PlayerPosition()
-        {
-            return ((int)Canvas.GetLeft(rect), (int)Canvas.GetTop(rect));
-        }
+        //public (int, int) PlayerPosition()
+        //{
+        //    return ((int)Canvas.GetLeft(rect), (int)Canvas.GetTop(rect));
+        //}
 
         public void BringToFront()
         {

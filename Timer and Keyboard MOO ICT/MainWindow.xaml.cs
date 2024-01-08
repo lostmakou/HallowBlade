@@ -2,6 +2,7 @@
 using RPS;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -37,6 +38,8 @@ namespace ZeldaWPF
         private CanvasHandlerRockPaperScissors RPS;
         private CanvasHandlerTag TAG;
 
+        Stopwatch stopwatch = new Stopwatch();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -49,7 +52,7 @@ namespace ZeldaWPF
 
             gameTimer.Tick += GameTimerEvent;
             gameTimer.Interval = TimeSpan.FromMilliseconds(30);
-            gameTimer.Start();
+            //gameTimer.Start();
             
             KeyDown += MainWindow_KeyDown;
             KeyUp += MainWindow_KeyUp;
@@ -253,6 +256,29 @@ namespace ZeldaWPF
                                 break;
                             }
                         }
+                        else if (block.Type == '2')
+                        {
+                            if (Player.DistanceToBlock(block))
+                            {
+                                gameTimer.Stop();
+                                myCanvas.Visibility = Visibility.Collapsed;
+                                Message.Visibility = Visibility.Visible;
+                                EndScreenPlayer.Visibility = Visibility.Visible;
+                                OKMessage.Visibility = Visibility.Collapsed;
+                                if (Player.IsBoySaved)
+                                {
+                                    MessageText.Text = "Молодец, ты спас еще одного героя.";
+                                }
+                                else
+                                {
+                                    AnoherPlayerEndPic.Visibility = Visibility.Collapsed;
+                                    MessageText.Text = "Путь ты свой прошел, но один из путников не был таким удачливым и ты ему не помог.";
+                                }
+                                MessageText.Text += $"\nСчет: {Player.Score}";
+                                MessageText.Text += $"\nВремя прохождения: {stopwatch.Elapsed.Minutes:D2}:{stopwatch.Elapsed.Seconds:D2}";
+                                stopwatch.Stop();
+                            }
+                        }
                     }
                 }
                 if (key == Key.Y)
@@ -276,6 +302,7 @@ namespace ZeldaWPF
         {
             MainMenu.Visibility = Visibility.Collapsed;
             Message.Visibility = Visibility.Visible;
+            stopwatch.Start();
             
         }
 
@@ -284,7 +311,16 @@ namespace ZeldaWPF
             Message.Visibility = Visibility.Collapsed;
             myCanvas.Visibility = Visibility.Visible;
             Conttol.Visibility = Visibility.Collapsed;
+            //outer_music.Position = TimeSpan.Zero;
+            //outer_music.Play();
             gameTimer.Start();
+
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Message.Visibility = Visibility.Collapsed;
+            EndScreen.Visibility = Visibility.Visible;
         }
 
         /*private void KeyIsDown(object sender, KeyEventArgs e)
