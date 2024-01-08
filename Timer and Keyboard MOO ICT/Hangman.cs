@@ -5,12 +5,14 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Shapes;
+using System.Windows.Threading;
 
 
 
 namespace hangman
 {
-    public partial class MainWindow : Window
+    public partial class CanvasHandlerHangman
     {
         private List<Label> ListofLabel;
         private List<Canvas> ListofBar;
@@ -18,15 +20,45 @@ namespace hangman
         private string WordNow;
         private int WrongGuesses;
         private readonly int MaximumGuess = 6;
+        public bool isWin { get; set; } = false;
+        public bool isPlayed { get; set; } = false;
         List<string> charWord = new List<string>();
+        Grid Grid;
+        Rectangle HangHead, HangBody, HangRHand, HangLHand, HangRLeg, HangLLeg;
+        ListBox CharList;
+        Button GuessButton;
+        Canvas mainCanvas;
+        DispatcherTimer mainTimer;
 
-        public MainWindow()
+        public CanvasHandlerHangman(Grid grid, Canvas mainCanvas, DispatcherTimer mainTimer)
         {
-            InitializeComponent();
+            this.Grid = grid;
+            this.mainCanvas = mainCanvas;
+            this.mainTimer = mainTimer;
+
+            //Grid = canvas.FindName("Grid") as Grid;
+            CharList = Grid.FindName("CharList") as ListBox;
+            GuessButton = Grid.FindName("GuessButton") as Button;
+            HangHead = Grid.FindName("HangHead") as Rectangle;
+            HangBody = Grid.FindName("HangBody") as Rectangle;
+            HangRHand = Grid.FindName("HangRHand") as Rectangle;
+            HangLHand = Grid.FindName("HangLHand") as Rectangle;
+            HangRLeg = Grid.FindName("HangRLeg") as Rectangle;
+            HangLLeg = Grid.FindName("HangLLeg") as Rectangle;
+
+            //Grid.fi
+
+            GuessButton.Click += GuessButtonClick;
 
             ListofLabel = new List<Label>();
             ListofBar = new List<Canvas>();
 
+            
+        }
+
+        public void Start()
+        {
+            isPlayed = true;
             CharList.Items.Clear();
             for (char i = 'А'; i <= 'Я'; ++i)
             {
@@ -75,7 +107,7 @@ namespace hangman
 
         private void SelectWord()
         {
-            string filepath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), "word_list.txt");
+            string filepath = "../../data/texture/hangman/word_list.txt";
             using (TextReader tr = new StreamReader(filepath, Encoding.ASCII))
             {
                 Random r = new Random();
@@ -142,7 +174,13 @@ namespace hangman
             if (HasWon(ListofLabel))
             {
                 _ = MessageBox.Show("Победа!");
+
                 ClearTable();
+                isWin = true;
+                Grid.Visibility = Visibility.Collapsed;
+                mainCanvas.Visibility = Visibility.Visible;
+                mainTimer.Start();
+
             }
         }
 
@@ -159,7 +197,12 @@ namespace hangman
                     {
                         _ = MessageBox.Show("Игра окончена!");
                         _ = MessageBox.Show("Было загадано слово " + WordNow);
+                        isWin = false;
                         ClearTable();
+                        Grid.Visibility = Visibility.Collapsed;
+                        mainCanvas.Visibility = Visibility.Visible;
+                        mainTimer.Start();
+                        
                     }
                 }
             }

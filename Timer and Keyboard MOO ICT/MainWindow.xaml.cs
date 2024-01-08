@@ -1,4 +1,5 @@
-﻿using Mini_games1;
+﻿using hangman;
+using Mini_games1;
 using RPS;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,7 @@ namespace ZeldaWPF
 
         private CanvasHandlerRockPaperScissors RPS;
         private CanvasHandlerTag TAG;
+        private CanvasHandlerHangman HANGMAN;
 
         Stopwatch stopwatch = new Stopwatch();
 
@@ -60,6 +62,7 @@ namespace ZeldaWPF
 
             RPS = new CanvasHandlerRockPaperScissors(RockPaperScissors, myCanvas, gameTimer);
             TAG = new CanvasHandlerTag(Tag, myCanvas, gameTimer);
+            HANGMAN = new CanvasHandlerHangman(Hangman, myCanvas, gameTimer);
         }
 
         
@@ -265,7 +268,7 @@ namespace ZeldaWPF
                                 Message.Visibility = Visibility.Visible;
                                 EndScreenPlayer.Visibility = Visibility.Visible;
                                 OKMessage.Visibility = Visibility.Collapsed;
-                                if (Player.IsBoySaved)
+                                if (HANGMAN.isWin)
                                 {
                                     MessageText.Text = "Молодец, ты спас еще одного героя.";
                                 }
@@ -277,6 +280,17 @@ namespace ZeldaWPF
                                 MessageText.Text += $"\nСчет: {Player.Score}";
                                 MessageText.Text += $"\nВремя прохождения: {stopwatch.Elapsed.Minutes:D2}:{stopwatch.Elapsed.Seconds:D2}";
                                 stopwatch.Stop();
+                            }
+                        }
+                        else if (block.Type == '0')
+                        {
+                            if (Player.DistanceToBlock(block) && !HANGMAN.isPlayed)
+                            {
+                                gameTimer.Stop();
+                                myCanvas.Visibility = Visibility.Collapsed;
+                                Hangman.Visibility = Visibility.Visible;
+                                HANGMAN.Start();
+                                //myCanvas.Focus();
                             }
                         }
                     }
@@ -293,6 +307,14 @@ namespace ZeldaWPF
                     gameTimer.Stop();
                     myCanvas.Visibility = Visibility.Collapsed;
                     Tag.Visibility = Visibility.Visible;
+
+                }
+                if (key == Key.I)
+                {
+                    gameTimer.Stop();
+                    myCanvas.Visibility = Visibility.Collapsed;
+                    Hangman.Visibility = Visibility.Visible;
+                    //HANGMAN.Start();
 
                 }
             }

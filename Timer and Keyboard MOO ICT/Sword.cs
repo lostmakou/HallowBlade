@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace ZeldaWPF
@@ -35,6 +36,27 @@ namespace ZeldaWPF
             Canvas.SetTop(rect, y);
             Canvas.SetLeft(rect, x);
             this.dir = direction;
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/blade_front.png", UriKind.RelativeOrAbsolute))); ;
+            RotateTransform rotateTransform = new RotateTransform(0);
+            if (dir == Direction.Up) 
+            {
+                rotateTransform = new RotateTransform(0);
+            }
+            else if (dir == Direction.Down)
+            {
+                rotateTransform = new RotateTransform(180);
+            }
+            else if (direction == Direction.Left)
+            {
+                rotateTransform = new RotateTransform(270);
+            }
+            else if (direction == Direction.Right)
+            {
+                rotateTransform = new RotateTransform(90);
+            }
+            imageBrush.RelativeTransform = rotateTransform;
+            //rect.Fill = imageBrush;
+
         }
 
         public bool Update()

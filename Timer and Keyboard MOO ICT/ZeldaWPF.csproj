@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Enemy.cs" />
+    <Compile Include="Hangman.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="RPS.cs" />
     <Compile Include="Sword.cs" />
@@ -172,6 +173,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\Music\outer_music.mp3" />
+    <Resource Include="Data\Texture\blade_front.png" />
+    <Resource Include="Data\Texture\hangman\Arm_1.png" />
+    <Resource Include="Data\Texture\hangman\Arm_2.png" />
+    <Resource Include="Data\Texture\hangman\Body.png" />
+    <Resource Include="Data\Texture\hangman\Gallows.png" />
+    <Resource Include="Data\Texture\hangman\game_2_background_ver2 %281%29.png" />
+    <Resource Include="Data\Texture\hangman\Hangman.png" />
+    <Resource Include="Data\Texture\hangman\Head.png" />
+    <Resource Include="Data\Texture\hangman\Leg_1.png" />
+    <Resource Include="Data\Texture\hangman\Leg_2.png" />
+    <Resource Include="Data\Texture\hangman\OK_button.png" />
+    <Resource Include="Data\Texture\hangman\word_list.txt" />
     <Resource Include="Data\Texture\mchar_ver2_noweapon_front1.png" />
     <Resource Include="Data\Texture\Portal.png" />
     <Resource Include="Data\Texture\end_pic.png" />
