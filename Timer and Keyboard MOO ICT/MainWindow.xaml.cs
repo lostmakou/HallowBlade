@@ -3,6 +3,7 @@ using RPS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,12 +43,13 @@ namespace ZeldaWPF
             this.ResizeMode = ResizeMode.NoResize;
             mr = new MapRender(myCanvas);
             Player = new Player(myCanvas, mr);
-            
-            
+            this.DataContext = Player;
+
             myCanvas.Focus();
 
             gameTimer.Tick += GameTimerEvent;
             gameTimer.Interval = TimeSpan.FromMilliseconds(30);
+            gameTimer.Start();
             
             KeyDown += MainWindow_KeyDown;
             KeyUp += MainWindow_KeyUp;
@@ -89,7 +91,7 @@ namespace ZeldaWPF
                                     mr.blocks.Add(bl);
                                 }
                                 Player.Score += enemy.Score;
-                                Score.Text = $"Счет: {Player.Score}";
+                                //Score.Text = $"Счет: {Player.Score}";
                                 myCanvas.Children.Remove(enemy.EnemyRectangle);
                                 mr.enemies.Remove(enemy);
                                 break;
@@ -176,7 +178,7 @@ namespace ZeldaWPF
                     Player.Move(false, false, true, false);
                 if (key == Key.S)
                     Player.Move(false, false, false, true);
-                if (sword == null && Player.isMatchedSword)
+                if (sword == null && Player.IsMatchedSword)
                 {
                     if (key == Key.Up)
                         sword = new Sword((int)Canvas.GetLeft(Player.rect), (int)Canvas.GetTop(Player.rect), Direction.Up, myCanvas);
@@ -210,7 +212,7 @@ namespace ZeldaWPF
                                 mr.blocks.Remove(block);
                                 myCanvas.Children.Remove(block.BlockRect);
                                 Player.Health += 1;
-                                Health.Text = $"Здоровье: {Player.Health}";
+                                //Health.Text = $"Здоровье: {Player.Health}";
                                 break;
                             }
                         }
@@ -220,7 +222,7 @@ namespace ZeldaWPF
                             {
                                 mr.blocks.Remove(block);
                                 myCanvas.Children.Remove(block.BlockRect);
-                                Player.isMatchedSword = true;
+                                Player.IsMatchedSword = true;
                                 break;
                             }
                         }
@@ -230,11 +232,11 @@ namespace ZeldaWPF
                             {
                                 mr.blocks.Remove(block);
                                 myCanvas.Children.Remove(block.BlockRect);
-                                Player.isMatchedKey = true;
+                                Player.IsMatchedKey = true;
                                 break;
                             }
                         }
-                        else if (block.Type == '☷' && Player.isMatchedKey)
+                        else if (block.Type == '☷' && Player.IsMatchedKey)
                         {
                             if (Player.DistanceToBlock(block))
                             {

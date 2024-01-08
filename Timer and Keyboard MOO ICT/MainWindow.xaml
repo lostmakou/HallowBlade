@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
         xmlns:local="clr-namespace:ZeldaWPF"
         mc:Ignorable="d"
         Title="HallowBlade" Height="640" Width="820"
         WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
+
     <Window.Icon>
         <BitmapImage UriSource="/Data/Texture/Pumpkin.png"/>
 
@@ -41,17 +47,27 @@
             </Button>
         </Canvas>
 
-        <Canvas Name="myCanvas" Background="LightBlue" Focusable="False" Visibility="Collapsed">
+        <Canvas Name="myCanvas" Background="LightBlue" Focusable="False" Visibility="Visible">
             <MediaElement x:Name="outer_music" Source="Data\Music\outer_music.mp3" IsMuted="True"></MediaElement>
             <Rectangle Name="black" Height="100" Width="805">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="Data\Texture\Frame_up.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock Canvas.Left="30" Canvas.Top="20" FontFamily="{StaticResource EpilepsySans}" x:Name="OuterScreen" FontSize="20" Foreground="White" Text="Экран: 0 - 0"></TextBlock>
-            <TextBlock Canvas.Left="30" Canvas.Top="50" FontFamily="{StaticResource EpilepsySans}" x:Name="Health" FontSize="20" Foreground="White" Text="Здоровье: 3"></TextBlock>
-            <TextBlock Canvas.Left="200" Canvas.Top="20" FontFamily="{StaticResource EpilepsySans}" x:Name="Score" FontSize="20" Foreground="White" Text="Счет: 0"></TextBlock>
-
+            <TextBlock Canvas.Left="30" Canvas.Top="20" FontFamily="{StaticResource EpilepsySans}" x:Name="OuterScreen" FontSize="20" Foreground="White" Text="{Binding Area, StringFormat='Экран: {0}'}"></TextBlock>
+            <TextBlock Canvas.Left="30" Canvas.Top="50" FontFamily="{StaticResource EpilepsySans}" x:Name="Health" FontSize="20" Foreground="White" Text="{Binding Health, StringFormat='Здоровье: {0}'}"></TextBlock>
+            <TextBlock Canvas.Left="200" Canvas.Top="20" FontFamily="{StaticResource EpilepsySans}" x:Name="DungeonScreen" FontSize="20" Foreground="White" Text="{Binding DungeonArea, StringFormat='Экран подземелья: {0}'}" Visibility="Collapsed"></TextBlock>
+            <TextBlock Canvas.Left="200" Canvas.Top="50" FontFamily="{StaticResource EpilepsySans}" x:Name="Score" FontSize="20" Foreground="White" Text="{Binding Score, StringFormat='Очки: {0}'}"></TextBlock>
+            <Rectangle x:Name="SwordIcon" Height="70" Width="70" Canvas.Left="597" Canvas.Top="15" Visibility="{Binding IsMatchedSword, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Data/Texture/blade.png"></ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="KeyIcon" Height="70" Width="70" Canvas.Left="703" Canvas.Top="15" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding IsMatchedKey, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Data/Texture/Key.png"></ImageBrush>
+                </Rectangle.Fill>
+            </Rectangle>
             <!--<TextBlock Canvas.Left="200" Canvas.Top="50" x:Name="DungeonScreen" FontSize="20" Foreground="White" Text="Экран подземелья: "></TextBlock>-->
 
             <!--<Rectangle Name="player" Height="50" Width="50" Canvas.Left="375" Canvas.Top="167" RenderTransformOrigin="0.545,0.545">
