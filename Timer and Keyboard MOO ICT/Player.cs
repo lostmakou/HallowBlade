@@ -157,7 +157,7 @@ namespace ZeldaWPF {
             rect.Fill = imageBrush;
 
             PlayerSpeed = 5;
-            Health = 3;
+            Health = 25;
             Score = 0;
             Area = (0, 0);
             IsMatchedSword = false;

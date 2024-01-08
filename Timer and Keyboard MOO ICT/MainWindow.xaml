@@ -35,12 +35,12 @@
             <Image Source="Data\Texture\game_2_background_ver2.png" Stretch="UniformToFill" Height="600" Width="800" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
 
             <Grid x:Name="Conttol" Visibility="Visible">
-                <Image Source="Data\Texture\arrows_buttons.png" Width="200" Margin="80,116,-80,-116" ></Image>
-                <Image Source="Data\Texture\wasd_buttons.png" Width="200" Margin="80,299,-80,-299" ></Image>
-                <Image Source="Data\Texture\E_button.png" Width="50" Margin="519,91,-369,-91" ></Image>
-                <TextBlock FontSize="20" Foreground="White" Text="Передвижение" Margin="118,440,-118,-442"></TextBlock>
-                <TextBlock FontSize="20" Foreground="White" Text="Атака" Margin="157,262,-157,-263"></TextBlock>
-                <TextBlock FontSize="20" Foreground="White" Text="Взаимодействие" Margin="472,213,-472,-214"></TextBlock>
+                <Image Source="Data\Texture\arrows_buttons.png" Width="200" Margin="307,127,-287,-128" ></Image>
+                <Image Source="Data\Texture\wasd_buttons.png" Width="200" Margin="118,290,-98,-290" ></Image>
+                <Image Source="Data\Texture\E_button.png" Width="60" Margin="572,320,-412,-320" ></Image>
+                <TextBlock FontSize="30" Foreground="White" FontFamily="{StaticResource EpilepsySans}" Text="Передвижение" Margin="128,427,-94,-339"></TextBlock>
+                <TextBlock FontSize="30" Foreground="White" FontFamily="{StaticResource EpilepsySans}" Text="Атака" Margin="369,269,-236,-174"></TextBlock>
+                <TextBlock FontSize="30" Foreground="White" FontFamily="{StaticResource EpilepsySans}" Text="Взаимодействие" Margin="492,426,-492,-340"></TextBlock>
             </Grid>
             <Grid x:Name="EndScreenPlayer" Visibility="Collapsed">
                 <Image x:Name="AnoherPlayerEndPic" Source="Data\Texture\mchar_ver2_noweapon_front1.png" Width="200" Margin="63,170,227,-169" ></Image>
@@ -51,8 +51,8 @@
                     </Button.Background>
                 </Button>
             </Grid>
-            <TextBlock Canvas.Left="50" Canvas.Top="50" x:Name="MessageText" FontSize="20" Foreground="White" Text="Управление"  Width="700" TextAlignment="Center" TextWrapping="Wrap"></TextBlock>
-            <Button x:Name="OKMessage" Height="74" Width="146" Canvas.Left="337" Canvas.Top="518" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1" Visibility="Visible">
+            <TextBlock Canvas.Left="50" Canvas.Top="36" x:Name="MessageText" FontFamily="{StaticResource EpilepsySans}" FontSize="30" Foreground="White" Text="Управление"  Width="700" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
+            <Button x:Name="OKMessage" Height="74" Width="146" Canvas.Left="337" Canvas.Top="504" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click_1" Visibility="Visible">
                 <Button.Background>
                     <ImageBrush ImageSource="Data\Texture\ok_button.png"></ImageBrush>
                 </Button.Background>
@@ -129,11 +129,11 @@
                     <ImageBrush ImageSource="Data\Texture\Question_button.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock FontSize="35" Canvas.Left="113" Canvas.Top="127" HorizontalAlignment="Center" VerticalAlignment="Top">Вы</TextBlock>
-            <TextBlock x:Name="txtMessage" FontSize="35" Canvas.Left="299" Canvas.Top="113" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.138,0.521" Text="Вы: 0 - Босс: 0"/>
-            <TextBlock x:Name="roundsText" FontSize="35" Canvas.Left="333" Text="Раунды: 3" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="61"/>
-            <TextBlock FontSize="35" Canvas.Left="632" Canvas.Top="127" HorizontalAlignment="Left" VerticalAlignment="Top" Text="Босс"/>
-            <TextBlock x:Name="txtTime" FontSize="50" Canvas.Left="396" Canvas.Top="282" HorizontalAlignment="Center" VerticalAlignment="Top" Text="5" Height="64" Width="28"/>
+            <TextBlock FontFamily="{StaticResource EpilepsySans}" FontSize="50" Canvas.Left="113" Canvas.Top="127" HorizontalAlignment="Center" VerticalAlignment="Top">Вы</TextBlock>
+            <TextBlock FontFamily="{StaticResource EpilepsySans}" x:Name="txtMessage" FontSize="50" Canvas.Left="266" Canvas.Top="135" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.138,0.521" Text="Вы: 0 - Босс: 0"/>
+            <TextBlock FontFamily="{StaticResource EpilepsySans}" x:Name="roundsText" FontSize="50" Canvas.Left="310" Text="Раунды: 3" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="67"/>
+            <TextBlock FontFamily="{StaticResource EpilepsySans}" FontSize="50" Canvas.Left="620" Canvas.Top="127" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Босс"/>
+            <TextBlock FontFamily="{StaticResource EpilepsySans}" x:Name="txtTime" FontSize="60" Canvas.Left="396" Canvas.Top="282" HorizontalAlignment="Center" VerticalAlignment="Top" Text="5" Height="64" Width="28"/>
         </Canvas>
 
         <!-- Пятнашки -->
@@ -141,41 +141,44 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="Data/Texture/Tag/game_2_background_ver2 (1).png"/>
             </Canvas.Background>
-            <Rectangle Width="360" Height="360" Canvas.Left="418" Canvas.Top="64" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Rectangle Width="360" Height="360" Canvas.Left="431" Canvas.Top="132" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <Rectangle.Fill>
                     <ImageBrush ImageSource="Data/Texture/Tag/game_1.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Button Tag ="0" Grid.Row ="0" Grid.Column ="0" Name="B0" Height="116" Width="116" Canvas.Left="43" Canvas.Top="64" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Button Tag ="0" Grid.Row ="0" Grid.Column ="0" Name="B0" Height="116" Width="116" Canvas.Left="40" Canvas.Top="132" HorizontalAlignment="Left" VerticalAlignment="Center">
             </Button>
-            <Button Tag ="1" Grid.Row ="0" Grid.Column ="1" Name="B1" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="166" VerticalAlignment="Center" Canvas.Top="64">
+            <Button Tag ="1" Grid.Row ="0" Grid.Column ="1" Name="B1" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="163" VerticalAlignment="Center" Canvas.Top="132">
 
             </Button>
-            <Button Tag ="2" Grid.Row ="0" Grid.Column ="2" Name="B2" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="287" VerticalAlignment="Center" Canvas.Top="64">
+            <Button Tag ="2" Grid.Row ="0" Grid.Column ="2" Name="B2" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="284" VerticalAlignment="Center" Canvas.Top="132">
 
             </Button>
-            <Button Tag ="3" Grid.Row ="1" Grid.Column ="0" Name="B3" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="43" VerticalAlignment="Center" Canvas.Top="186">
+            <Button Tag ="3" Grid.Row ="1" Grid.Column ="0" Name="B3" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="40" VerticalAlignment="Center" Canvas.Top="254">
 
             </Button>
-            <Button Tag ="4" Grid.Row ="1" Grid.Column ="1" Name="B4" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="166" VerticalAlignment="Center" Canvas.Top="186">
+            <Button Tag ="4" Grid.Row ="1" Grid.Column ="1" Name="B4" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="163" VerticalAlignment="Center" Canvas.Top="254">
 
             </Button>
-            <Button Tag ="5" Grid.Row ="1" Grid.Column ="2" Name="B5" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="287" VerticalAlignment="Center" Canvas.Top="186">
+            <Button Tag ="5" Grid.Row ="1" Grid.Column ="2" Name="B5" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="284" VerticalAlignment="Center" Canvas.Top="254">
 
             </Button>
-            <Button Tag ="6" Grid.Row ="2" Grid.Column ="0" Name="B6" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="43" VerticalAlignment="Center" Canvas.Top="308">
+            <Button Tag ="6" Grid.Row ="2" Grid.Column ="0" Name="B6" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="40" VerticalAlignment="Center" Canvas.Top="376">
 
             </Button>
-            <Button Tag ="7" Grid.Row ="2" Grid.Column ="1" Name="B7" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="166" VerticalAlignment="Center" Canvas.Top="308">
+            <Button Tag ="7" Grid.Row ="2" Grid.Column ="1" Name="B7" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="163" VerticalAlignment="Center" Canvas.Top="376">
 
             </Button>
-            <Button Tag ="8" Grid.Row ="2" Grid.Column ="2" Name="B8" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="287" VerticalAlignment="Center" Canvas.Top="308">
+            <Button Tag ="8" Grid.Row ="2" Grid.Column ="2" Name="B8" Height="116" Width="116" HorizontalAlignment="Left" Canvas.Left="284" VerticalAlignment="Center" Canvas.Top="376">
 
             </Button>
         </Canvas>
-
+        
         <!--Виселица-->
         <Grid Name="Hangman" Visibility="Collapsed">
+            <Grid.Background>
+                <ImageBrush ImageSource="/game_2_background_ver2.png"/>
+            </Grid.Background>
             <Grid.RowDefinitions >
                 <RowDefinition Height="0" />
                 <RowDefinition />
@@ -184,9 +187,6 @@
                 <ColumnDefinition Width="147.2" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-
-            <Image Source="Data\Texture\game_2_background_ver2.png" Stretch="UniformToFill" Height="600" Width="800" HorizontalAlignment="Left" VerticalAlignment="Center"></Image>
-
 
             <Rectangle Canvas.Left="260" Canvas.Top="192" Height="239" Width="238" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="388,299,0,0" Grid.Row="1">
                 <Rectangle.Fill>
@@ -260,8 +260,8 @@
                 </Canvas>
 
             </Canvas>
-    </Grid>
-    <!-- Конец -->
+        </Grid>
+        <!-- Конец -->
         <Canvas x:Name="EndScreen" Background="Black" Visibility="Collapsed">
             <Rectangle Height="400" Width="820">
                 <Rectangle.Fill>
@@ -273,7 +273,7 @@
                     <ImageBrush ImageSource="Data\Texture\game_2_background_ver2.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock x:Name="EndText" FontSize="20" Foreground="White" Canvas.Left="50" Canvas.Top="450" TextWrapping="Wrap" Width="700"> Оказалось это был лишь сон...</TextBlock>
+            <TextBlock x:Name="EndText" FontFamily="{StaticResource EpilepsySans}" FontSize="30" Foreground="White" Canvas.Left="50" Canvas.Top="450" TextWrapping="Wrap" Width="700"> Оказалось это был лишь сон...</TextBlock>
         </Canvas>
     </Grid>
 

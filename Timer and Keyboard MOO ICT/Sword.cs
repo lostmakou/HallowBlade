@@ -54,8 +54,10 @@ namespace ZeldaWPF
             {
                 rotateTransform = new RotateTransform(90);
             }
-            imageBrush.RelativeTransform = rotateTransform;
-            //rect.Fill = imageBrush;
+            rect.RenderTransform = rotateTransform;
+            rotateTransform.CenterX = 25;
+            rotateTransform.CenterY = 37;
+            rect.Fill = imageBrush;
 
         }
 
