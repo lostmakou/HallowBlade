@@ -9,6 +9,7 @@
         Title="HallowBlade" Height="635" Width="815"
         WindowStartupLocation="CenterScreen">
 
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </Window.Resources>
@@ -273,7 +274,7 @@
                     <ImageBrush ImageSource="Data\Texture\game_2_background_ver2.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock x:Name="EndText" FontFamily="{StaticResource EpilepsySans}" FontSize="30" Foreground="White" Canvas.Left="50" Canvas.Top="450" TextWrapping="Wrap" Width="700"> Оказалось это был лишь сон...</TextBlock>
+            <TextBlock x:Name="EndText" FontFamily="{StaticResource EpilepsySans}" FontSize="30" Foreground="White" Canvas.Left="50" Canvas.Top="450" TextWrapping="Wrap" Width="700"> Ты открываешь глаза. Оказалось это был лишь сон...</TextBlock>
         </Canvas>
     </Grid>
 

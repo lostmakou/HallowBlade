@@ -180,7 +180,7 @@ namespace ZeldaWPF
 
         private void MovePlayer()
         {
-            
+            if (gameTimer.IsEnabled)
             foreach (Key key in keys)
             {
                 if (key == Key.A)
