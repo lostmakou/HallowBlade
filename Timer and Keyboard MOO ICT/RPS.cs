@@ -23,6 +23,7 @@ namespace RPS
     public partial class CanvasHandlerRockPaperScissors
     {
         public bool isWin { get; set; } = false;
+        public Boss boss { get; set; }
         int rounds = 3;
         int timerPerRound = 6;
         bool gameover = false;
@@ -68,6 +69,22 @@ namespace RPS
             gameTimer.Tick += Timer_Tick;
 
             //gameTimer.Start();
+        }
+
+        public void Restart()
+        {
+            timerPerRound = 6;
+            rounds = 3;
+            AIwins = 0;
+            playerwins = 0;
+            gameover = false;
+            txtMessage.Text = "Вы: " + playerwins + " - " + "Босс: " + AIwins;
+
+            playerChoice = "none";
+            txtTime.Text = "5";
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Question_button.png", UriKind.RelativeOrAbsolute)));
+            picPlayer.Fill = imageBrush;
+            picCPU.Fill = imageBrush;
         }
 
         private void btnRock_Click(object sender, EventArgs e)
@@ -131,6 +148,7 @@ namespace RPS
                 {
                     if (playerwins > AIwins)
                     {
+                        boss.Health = 0;
                         MessageBox.Show("Вы выиграли эту игру");
                         
                         isWin = true;
@@ -138,6 +156,7 @@ namespace RPS
                     }
                     else
                     {
+                        boss.Health = 4;
                         MessageBox.Show("Босс выиграл эту игру");
                     }
                     gameTimer.Stop();
@@ -145,6 +164,7 @@ namespace RPS
                     mainCanvas.Visibility = Visibility.Visible;
                     mainTimer.Start();
                     gameover = true;
+
                 }
             }
         }
@@ -243,23 +263,23 @@ namespace RPS
             picCPU.Fill = imageBrush;
         }
 
-        private void restartGame(object sender, EventArgs e)
-        {
-            playerwins = 0;
-            AIwins = 0;
-            rounds = 3;
-            txtMessage.Text = "Вы: " + playerwins + " - " + "Босс: " + AIwins;
+        //private void restartGame(object sender, EventArgs e)
+        //{
+        //    playerwins = 0;
+        //    AIwins = 0;
+        //    rounds = 3;
+        //    txtMessage.Text = "Вы: " + playerwins + " - " + "Босс: " + AIwins;
 
-            playerChoice = "none";
-            txtTime.Text = "5";
+        //    playerChoice = "none";
+        //    txtTime.Text = "5";
 
-            gameTimer.Start();
+        //    gameTimer.Start();
 
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Question_button.png", UriKind.RelativeOrAbsolute)));
-            picPlayer.Fill = imageBrush;
-            picCPU.Fill = imageBrush;
+        //    ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture\\Question_button.png", UriKind.RelativeOrAbsolute)));
+        //    picPlayer.Fill = imageBrush;
+        //    picCPU.Fill = imageBrush;
 
-            gameover = false;
-        }
+        //    gameover = false;
+        //}
     }
 }

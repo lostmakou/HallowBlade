@@ -340,8 +340,7 @@ namespace ZeldaWPF {
         {
             Rect PlayerHitBox = new Rect(Canvas.GetLeft(rect)+5, Canvas.GetTop(rect)+10, rect.ActualWidth - 10, rect.ActualHeight - 10);
             foreach (Block block in mr.blocks)
-            {
-                
+            { 
                 Rect BlockHitBox = new Rect(Canvas.GetLeft(block.BlockRect), Canvas.GetTop(block.BlockRect), block.BlockRect.ActualWidth, block.BlockRect.ActualHeight);
 
                 if (PlayerHitBox.IntersectsWith(BlockHitBox))

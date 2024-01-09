@@ -88,7 +88,15 @@ namespace ZeldaWPF
                             //Console.WriteLine(enemy.Health.ToString());
                             if (enemy.Health <= 0)
                             {
-                                if (random.Next(0, 1) == 0)
+                                if (enemy is Boss)
+                                {
+                                    var bl = new Block('→');
+                                    myCanvas.Children.Add(bl.BlockRect);
+                                    Canvas.SetLeft(bl.BlockRect, Canvas.GetLeft(enemy.EnemyRectangle));
+                                    Canvas.SetTop(bl.BlockRect, Canvas.GetTop(enemy.EnemyRectangle));
+                                    mr.blocks.Add(bl);
+                                }
+                                if (random.Next(0, 5) == 0)
                                 {
                                     var bl = new Block('♥');
                                     myCanvas.Children.Add(bl.BlockRect);
@@ -129,20 +137,19 @@ namespace ZeldaWPF
                         gameTimer.Stop();
                         myCanvas.Visibility = Visibility.Collapsed;
                         RockPaperScissors.Visibility = Visibility.Visible;
+
+                        RPS.Restart();
+                        RPS.boss = enemy;
                         RPS.gameTimer.Start();
-                        if (RPS.isWin)
-                        {
-                            enemy.Health = 5;   
-                        }
-                        else
-                        {
-                            enemy.Health = 0;
-                            var bl = new Block('→');
-                            myCanvas.Children.Add(bl.BlockRect);
-                            Canvas.SetLeft(bl.BlockRect, Canvas.GetLeft(enemy.EnemyRectangle));
-                            Canvas.SetTop(bl.BlockRect, Canvas.GetTop(enemy.EnemyRectangle));
-                            mr.blocks.Add(bl);
-                        }
+                        //if (RPS.isWin)
+                        //{
+                        //    enemy.Health = 5;   
+                        //}
+                        //else
+                        //{
+                        //    enemy.Health = 0;
+
+                        //}
                     }
                 }
             }

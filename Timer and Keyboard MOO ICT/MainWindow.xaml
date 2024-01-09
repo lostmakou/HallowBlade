@@ -6,7 +6,7 @@
         
         xmlns:local="clr-namespace:ZeldaWPF"
         mc:Ignorable="d"
-        Title="HallowBlade" Height="640" Width="820"
+        Title="HallowBlade" Height="635" Width="815"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -177,7 +177,7 @@
         <!--Виселица-->
         <Grid Name="Hangman" Visibility="Collapsed">
             <Grid.Background>
-                <ImageBrush ImageSource="/game_2_background_ver2.png"/>
+                <ImageBrush ImageSource="data/texture/game_2_background_ver2.png"/>
             </Grid.Background>
             <Grid.RowDefinitions >
                 <RowDefinition Height="0" />
