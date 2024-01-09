@@ -62,7 +62,7 @@ namespace hangman
             CharList.Items.Clear();
             for (char i = 'А'; i <= 'Я'; ++i)
             {
-                _ = CharList.Items.Add(i);
+                CharList.Items.Add(i);
             }
 
             int Space = 0;
@@ -79,7 +79,7 @@ namespace hangman
                 };
                 Grid.SetRow(can, 1);
                 Grid.SetColumn(can, 1);
-                _ = Grid.Children.Add(can);
+                Grid.Children.Add(can);
 
                 lbl.Margin = new Thickness(-200 + Space, 100, 0, 0);
                 lbl.Visibility = Visibility.Hidden;
@@ -90,7 +90,7 @@ namespace hangman
 
                 Grid.SetRow(lbl, 1);
                 Grid.SetColumn(lbl, 1);
-                _ = Grid.Children.Add(lbl);
+                Grid.Children.Add(lbl);
 
                 ListofLabel.Add(lbl);
                 ListofBar.Add(can);
@@ -173,7 +173,7 @@ namespace hangman
 
             if (HasWon(ListofLabel))
             {
-                _ = MessageBox.Show("Победа!");
+                MessageBox.Show("Победа!");
 
                 ClearTable();
                 isWin = true;
@@ -195,8 +195,8 @@ namespace hangman
                     WrongGuesses++;
                     if (WrongGuesses >= MaximumGuess)
                     {
-                        _ = MessageBox.Show("Игра окончена!");
-                        _ = MessageBox.Show("Было загадано слово " + WordNow);
+                        MessageBox.Show("Игра окончена!");
+                        MessageBox.Show("Было загадано слово " + WordNow);
                         isWin = false;
                         ClearTable();
                         Grid.Visibility = Visibility.Collapsed;
