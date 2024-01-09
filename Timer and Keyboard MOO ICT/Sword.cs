@@ -36,7 +36,7 @@ namespace ZeldaWPF
             Canvas.SetTop(rect, y);
             Canvas.SetLeft(rect, x);
             this.dir = direction;
-            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/blade_front.png", UriKind.RelativeOrAbsolute))); ;
+            ImageBrush imageBrush = new ImageBrush(new BitmapImage(new Uri("../../Data\\Texture/blade_front_ver2.png", UriKind.RelativeOrAbsolute))); ;
             RotateTransform rotateTransform = new RotateTransform(0);
             if (dir == Direction.Up) 
             {

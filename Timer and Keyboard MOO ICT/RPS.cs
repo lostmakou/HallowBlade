@@ -74,7 +74,7 @@ namespace RPS
         public void Restart()
         {
             timerPerRound = 6;
-            rounds = 3;
+            rounds = 1;
             AIwins = 0;
             playerwins = 0;
             gameover = false;
@@ -112,7 +112,7 @@ namespace RPS
             timerPerRound -= 1;
 
             txtTime.Text = timerPerRound.ToString();
-            roundsText.Text = "Rounds: " + rounds;
+            roundsText.Text = "Раунд: " + rounds;
 
             if (timerPerRound < 1)
             {
@@ -140,7 +140,7 @@ namespace RPS
                 }
 
 
-                if (rounds > 0)
+                if (rounds <= 3)
                 {
                     checkGame();
                 }
@@ -176,57 +176,48 @@ namespace RPS
 
             if (playerChoice == "rock" && CPUchoice == "paper")
             {
-
+                rounds += 1;
                 AIwins += 1;
-
-                rounds -= 1;
 
                 MessageBox.Show("Вы проиграли этот раунд");
 
             }
             else if (playerChoice == "scissor" && CPUchoice == "rock")
             {
+                rounds += 1;
                 AIwins += 1;
-
-                rounds -= 1;
 
                 MessageBox.Show("Вы проиграли этот раунд");
             }
             else if (playerChoice == "paper" && CPUchoice == "scissor")
             {
 
+                rounds += 1;
                 AIwins += 1;
-
-                rounds -= 1;
 
                 MessageBox.Show("Вы проиграли этот раунд");
 
             }
             else if (playerChoice == "rock" && CPUchoice == "scissor")
             {
-
+                rounds += 1;
                 playerwins += 1;
-
-                rounds -= 1;
 
                 MessageBox.Show("Вы выиграли этот раунд");
 
             }
             else if (playerChoice == "paper" && CPUchoice == "rock")
             {
-
+                rounds += 1;
                 playerwins += 1;
-
-                rounds -= 1;
 
                 MessageBox.Show("Вы выиграли этот раунд");
 
             }
             else if (playerChoice == "scissor" && CPUchoice == "paper")
             {
+                rounds += 1;
                 playerwins += 1;
-
-                rounds -= 1;
 
                 MessageBox.Show("Вы выиграли этот раунд");
 

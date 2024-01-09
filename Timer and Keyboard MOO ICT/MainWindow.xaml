@@ -129,11 +129,11 @@
                     <ImageBrush ImageSource="Data\Texture\Question_button.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock FontFamily="{StaticResource EpilepsySans}" FontSize="50" Canvas.Left="113" Canvas.Top="127" HorizontalAlignment="Center" VerticalAlignment="Top">Вы</TextBlock>
-            <TextBlock FontFamily="{StaticResource EpilepsySans}" x:Name="txtMessage" FontSize="50" Canvas.Left="266" Canvas.Top="135" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.138,0.521" Text="Вы: 0 - Босс: 0"/>
-            <TextBlock FontFamily="{StaticResource EpilepsySans}" x:Name="roundsText" FontSize="50" Canvas.Left="310" Text="Раунды: 3" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="67"/>
-            <TextBlock FontFamily="{StaticResource EpilepsySans}" FontSize="50" Canvas.Left="620" Canvas.Top="127" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Босс"/>
-            <TextBlock FontFamily="{StaticResource EpilepsySans}" x:Name="txtTime" FontSize="60" Canvas.Left="396" Canvas.Top="282" HorizontalAlignment="Center" VerticalAlignment="Top" Text="5" Height="64" Width="28"/>
+            <TextBlock Foreground="White" FontFamily="{StaticResource EpilepsySans}" FontSize="50" Canvas.Left="113" Canvas.Top="127" HorizontalAlignment="Center" VerticalAlignment="Top">Вы</TextBlock>
+            <TextBlock Foreground="White" FontFamily="{StaticResource EpilepsySans}" x:Name="txtMessage" FontSize="50" Canvas.Left="266" Canvas.Top="135" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="-0.138,0.521" Text="Вы: 0 - Босс: 0"/>
+            <TextBlock Foreground="White" FontFamily="{StaticResource EpilepsySans}" x:Name="roundsText" FontSize="50" Canvas.Left="310" Text="Раунд: 1" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="67"/>
+            <TextBlock Foreground="White" FontFamily="{StaticResource EpilepsySans}" FontSize="50" Canvas.Left="620" Canvas.Top="127" HorizontalAlignment="Left" VerticalAlignment="Center" Text="Босс"/>
+            <TextBlock Foreground="White" FontFamily="{StaticResource EpilepsySans}" x:Name="txtTime" FontSize="60" Canvas.Left="396" Canvas.Top="282" HorizontalAlignment="Center" VerticalAlignment="Top" Text="5" Height="64" Width="28"/>
         </Canvas>
 
         <!-- Пятнашки -->
