@@ -24,8 +24,8 @@ namespace RPS
     {
         public bool isWin { get; set; } = false;
         public Boss boss { get; set; }
-        int rounds = 3;
-        int timerPerRound = 6;
+        int rounds = 1;
+        int timerPerRound = 5;
         bool gameover = false;
         string[] CPUchoiceList = { "rock", "paper", "scissor", "paper", "scissor", "rock" };
         int randomNumber = 0;
@@ -60,7 +60,6 @@ namespace RPS
             btnScissors.Click += btnScissors_Click;
             bntRock.Click += btnRock_Click;
 
-
             playerChoice = "none";
             txtTime.Text = "5";
 
@@ -73,7 +72,7 @@ namespace RPS
 
         public void Restart()
         {
-            timerPerRound = 6;
+            timerPerRound = 5;
             rounds = 1;
             AIwins = 0;
             playerwins = 0;
@@ -117,7 +116,7 @@ namespace RPS
             if (timerPerRound < 1)
             {
                 gameTimer.Stop();
-                timerPerRound = 6;
+                timerPerRound = 5;
 
                 randomNumber = rnd.Next(0, CPUchoiceList.Length);
 
@@ -140,13 +139,13 @@ namespace RPS
                 }
 
 
-                if (rounds <= 3)
+                if (rounds < 3)
                 {
                     checkGame();
                 }
                 else
                 {
-                    if (playerwins > AIwins)
+                    if (playerwins >= AIwins)
                     {
                         boss.Health = 0;
                         MessageBox.Show("Вы выиграли эту игру");
